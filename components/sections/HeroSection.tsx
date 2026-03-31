@@ -1,6 +1,6 @@
 'use client'
 
-import AsciiInfra from '../AsciiInfra'
+import HeroIntro from '../HeroIntro'
 import HeroVideoBackground from '../HeroVideoBackground'
 
 const heroYoutubeId = process.env.NEXT_PUBLIC_HERO_YOUTUBE_VIDEO_ID
@@ -34,10 +34,8 @@ export default function HeroSection() {
       <div className="absolute inset-0 z-[3] bg-gradient-to-b from-background/20 via-background/40 to-background/90" />
 
       {/* Content */}
-      <div className="relative z-10 h-full flex flex-col items-center justify-center px-6">
-        <div className="mb-20 fade-in">
-          <AsciiInfra />
-        </div>
+      <div className="relative z-10 h-full flex flex-col items-center justify-center px-6 pt-14">
+        <HeroIntro />
       </div>
 
       <style jsx>{`
