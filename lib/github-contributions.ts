@@ -63,13 +63,36 @@ export type ContributionCalendarResult = {
   maxCount: number
 }
 
-function countToLevel(count: number, max: number): 0 | 1 | 2 | 3 {
+export function countToLevel(count: number, max: number): 0 | 1 | 2 | 3 {
   if (count === 0) return 0
   if (max <= 1) return 3
   const r = count / max
   if (r <= 0.33) return 1
   if (r <= 0.66) return 2
   return 3
+}
+
+/**
+ * Keep only the latest `maxWeeks` columns (GitHub orders weeks oldest → newest).
+ * Recomputes intensity levels from the visible slice so the legend matches the frame.
+ */
+export function sliceLatestWeeks(
+  weeks: ContributionDayCell[][],
+  maxWeeks: number
+): ContributionDayCell[][] {
+  const sliced = weeks.slice(-maxWeeks)
+  let maxCount = 0
+  for (const w of sliced) {
+    for (const d of w) {
+      if (d.contributionCount > maxCount) maxCount = d.contributionCount
+    }
+  }
+  return sliced.map((week) =>
+    week.map((d) => ({
+      ...d,
+      level: countToLevel(d.contributionCount, maxCount),
+    }))
+  )
 }
 
 function rolling365Range(): { fromIso: string; toIso: string } {

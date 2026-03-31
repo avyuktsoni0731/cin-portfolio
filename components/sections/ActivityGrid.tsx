@@ -1,42 +1,17 @@
 import Link from 'next/link'
+import { getGithubContributionCalendar } from '@/lib/github-contributions'
 import {
-  getGithubContributionCalendar,
-  type ContributionDayCell,
-} from '@/lib/github-contributions'
+  ActivityHeatmap,
+  ActivityHeatmapPlaceholder,
+} from '@/components/sections/ActivityHeatmap'
 
-/** GitHub-like greens — readable on near-black backgrounds */
+/** GitHub-like greens — match ActivityHeatmap legend */
 const intensityColors = [
   'bg-[#161b22] ring-1 ring-inset ring-zinc-700/60',
   'bg-emerald-950/95 border border-emerald-800/70',
   'bg-emerald-600 shadow-[0_0_6px_rgba(5,150,105,0.35)]',
   'bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.45)]',
 ] as const
-
-function PlaceholderGrid() {
-  const weeks = Array.from({ length: 12 }, (_, weekIdx) =>
-    Array.from({ length: 7 }, (_, dayIdx) => {
-      const n = (weekIdx * 31 + dayIdx * 17 + weekIdx * dayIdx) % 97
-      return n % 4
-    })
-  )
-
-  return (
-    <div className="w-full overflow-x-auto">
-      <div className="flex min-w-max justify-start gap-1">
-        {weeks.map((week, weekIdx) => (
-          <div key={weekIdx} className="flex flex-col gap-1">
-            {week.map((intensity, dayIdx) => (
-              <div
-                key={dayIdx}
-                className={`w-3 h-3 rounded-sm ${intensityColors[intensity]}`}
-              />
-            ))}
-          </div>
-        ))}
-      </div>
-    </div>
-  )
-}
 
 function Legend() {
   return (
@@ -48,26 +23,6 @@ function Legend() {
         ))}
       </div>
       <span>more</span>
-    </div>
-  )
-}
-
-function RealGrid({ weeks }: { weeks: ContributionDayCell[][] }) {
-  return (
-    <div className="w-full overflow-x-auto">
-      <div className="flex min-w-max justify-start gap-1">
-        {weeks.map((week, weekIdx) => (
-          <div key={weekIdx} className="flex flex-col gap-1">
-            {week.map((day) => (
-              <div
-                key={day.date}
-                className={`w-3 h-3 rounded-sm transition-all hover:ring-2 hover:ring-emerald-400/40 hover:z-10 ${intensityColors[day.level]}`}
-                title={`${day.date}: ${day.contributionCount} contribution${day.contributionCount === 1 ? '' : 's'}`}
-              />
-            ))}
-          </div>
-        ))}
-      </div>
     </div>
   )
 }
@@ -87,10 +42,10 @@ export default async function ActivityGrid() {
             <code className="font-mono text-foreground/65">GITHUB_USERNAME</code> and{' '}
             <code className="font-mono text-foreground/65">GITHUB_TOKEN</code> to{' '}
             <code className="font-mono text-foreground/65">.env.local</code> (classic PAT
-            with <code className="font-mono text-foreground/65">read:user</code>). By
-            default the graph shows the{' '}
+            with <code className="font-mono text-foreground/65">read:user</code>). Totals
+            use the{' '}
             <strong className="text-foreground/75 font-normal">last ~365 days</strong>{' '}
-            (like GitHub). Set{' '}
+            (like GitHub); the grid shows the latest weeks that fit this width. Set{' '}
             <code className="font-mono text-foreground/65">GITHUB_ACTIVITY_YEAR=2026</code>{' '}
             to lock the range to that calendar year.
           </p>
@@ -103,7 +58,6 @@ export default async function ActivityGrid() {
             ) : (
               <> in {data.periodLabel}</>
             )}{' '}
-            ·{' '}
             <Link
               href={`https://github.com/${data.login}`}
               className="text-foreground/60 hover:text-foreground transition-colors"
@@ -114,7 +68,11 @@ export default async function ActivityGrid() {
         )}
 
         <div className="fade-in-up w-full rounded-sm border border-border/20 bg-muted/5 p-5 sm:p-6">
-          {data ? <RealGrid weeks={data.weeks} /> : <PlaceholderGrid />}
+          {data?.weeks?.length ? (
+            <ActivityHeatmap weeks={data.weeks} />
+          ) : (
+            <ActivityHeatmapPlaceholder />
+          )}
           <Legend />
         </div>
       </div>
