@@ -1,12 +1,13 @@
 'use client'
 
 import { Volume2, VolumeX } from 'lucide-react'
-import { useAmbientVideo } from '@/components/AmbientVideoContext'
+import { useAmbientVideoOptional } from '@/components/AmbientVideoContext'
 
 export default function SoundToggle() {
-  const { hasPlayer, isMuted, toggleMute } = useAmbientVideo()
+  const ctx = useAmbientVideoOptional()
+  if (!ctx?.hasPlayer) return null
 
-  if (!hasPlayer) return null
+  const { isMuted, toggleMute } = ctx
 
   return (
     <div className="group fixed bottom-6 right-6 z-40 flex flex-row items-center gap-3">

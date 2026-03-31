@@ -39,12 +39,15 @@ export function AmbientVideoProvider({ children }: { children: ReactNode }) {
     const p = playerRef.current
     if (!p) return
     try {
-      if (p.isMuted()) {
+      // YouTube’s isMuted() can lag right after mute/unMute; drive UI from the action we take.
+      const muted = p.isMuted()
+      if (muted) {
         p.unMute()
+        setIsMuted(false)
       } else {
         p.mute()
+        setIsMuted(true)
       }
-      setIsMuted(p.isMuted())
     } catch {
       /* noop */
     }
@@ -65,4 +68,9 @@ export function useAmbientVideo() {
     throw new Error('useAmbientVideo must be used within AmbientVideoProvider')
   }
   return ctx
+}
+
+/** For SoundToggle on any route: no provider or no video → null. */
+export function useAmbientVideoOptional() {
+  return useContext(AmbientVideoContext)
 }

@@ -11,16 +11,17 @@ import Footer from '@/components/sections/Footer'
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background">
-      <NavHeader />
-      <HeroSection />
-      <SoundToggle />
-      <AboutSection />
-      <WorkSection />
-      <ActivityGrid />
-      <AchievementsSection />
-      <ThoughtsSection />
-      <Footer />
+    <AmbientVideoProvider>
+      <main className="min-h-screen bg-background">
+        <NavHeader />
+        <HeroSection />
+        <SoundToggle />
+        <AboutSection />
+        <WorkSection />
+        <ActivityGrid />
+        <AchievementsSection />
+        <ThoughtsSection />
+        <Footer />
       </main>
     </AmbientVideoProvider>
   )
