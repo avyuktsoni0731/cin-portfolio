@@ -37,7 +37,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
-      <body className={`${_geist.className} ${_geistMono.className} ${_crimsonText.variable} font-sans antialiased`}>
+      <body
+        className={`${_geist.className} ${_geistMono.className} ${_crimsonText.variable} font-sans antialiased`}
+        suppressHydrationWarning
+      >
         {children}
         <Analytics />
       </body>

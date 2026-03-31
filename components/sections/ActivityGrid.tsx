@@ -1,9 +1,14 @@
 'use client'
 
+/** Deterministic “activity” so SSR and hydration match (no Math.random in render). */
+function intensityAt(weekIdx: number, dayIdx: number): number {
+  const n = (weekIdx * 31 + dayIdx * 17 + weekIdx * dayIdx) % 97
+  return n % 4
+}
+
 export default function ActivityGrid() {
-  // Generate a simple grid pattern (12 weeks x 7 days)
-  const weeks = Array.from({ length: 12 }, () =>
-    Array.from({ length: 7 }, () => Math.floor(Math.random() * 4))
+  const weeks = Array.from({ length: 12 }, (_, weekIdx) =>
+    Array.from({ length: 7 }, (_, dayIdx) => intensityAt(weekIdx, dayIdx))
   )
 
   const intensityColors = [
