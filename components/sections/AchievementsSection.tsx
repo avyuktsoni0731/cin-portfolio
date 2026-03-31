@@ -13,9 +13,9 @@ const ACHIEVEMENTS = [
 
 export default function AchievementsSection() {
   return (
-    <section className="relative w-full py-24 px-6 bg-background">
-      <div className="max-w-3xl mx-auto">
-        <h3 className="text-xl font-serif font-semibold mb-12 tracking-tight fade-in-up">
+    <section className="relative w-full px-6 py-20 bg-background">
+      <div className="mx-auto w-full max-w-3xl">
+        <h3 className="text-xl font-serif font-semibold tracking-tight fade-in-up mb-10">
           highlights
         </h3>
 
@@ -23,11 +23,11 @@ export default function AchievementsSection() {
           {ACHIEVEMENTS.map((achievement, idx) => (
             <li
               key={idx}
-              className="flex gap-4 fade-in-up text-sm text-foreground/80 leading-relaxed"
+              className="fade-in-up flex gap-3 text-sm leading-relaxed text-foreground/80"
               style={{ animationDelay: `${idx * 75}ms` }}
             >
-              <span className="text-primary font-semibold mt-1 flex-shrink-0">•</span>
-              <span>{achievement}</span>
+              <span className="mt-0.5 flex-shrink-0 font-semibold text-primary">•</span>
+              <span className="min-w-0">{achievement}</span>
             </li>
           ))}
         </ul>

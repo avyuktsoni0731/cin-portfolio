@@ -21,8 +21,8 @@ function PlaceholderGrid() {
   )
 
   return (
-    <div className="overflow-x-auto w-full">
-      <div className="flex gap-1 min-w-max mx-auto">
+    <div className="w-full overflow-x-auto">
+      <div className="flex min-w-max justify-start gap-1">
         {weeks.map((week, weekIdx) => (
           <div key={weekIdx} className="flex flex-col gap-1">
             {week.map((intensity, dayIdx) => (
@@ -40,7 +40,7 @@ function PlaceholderGrid() {
 
 function Legend() {
   return (
-    <div className="mt-6 text-xs text-foreground/50 flex gap-4 items-center flex-wrap">
+    <div className="mt-6 flex flex-wrap items-center justify-start gap-4 text-xs text-foreground/50">
       <span>less</span>
       <div className="flex gap-1">
         {intensityColors.map((color, idx) => (
@@ -54,8 +54,8 @@ function Legend() {
 
 function RealGrid({ weeks }: { weeks: ContributionDayCell[][] }) {
   return (
-    <div className="overflow-x-auto w-full">
-      <div className="flex gap-1 min-w-max">
+    <div className="w-full overflow-x-auto">
+      <div className="flex min-w-max justify-start gap-1">
         {weeks.map((week, weekIdx) => (
           <div key={weekIdx} className="flex flex-col gap-1">
             {week.map((day) => (
@@ -76,9 +76,9 @@ export default async function ActivityGrid() {
   const data = await getGithubContributionCalendar()
 
   return (
-    <section className="relative w-full py-24 px-6 bg-background">
-      <div className="max-w-5xl mx-auto">
-        <h3 className="text-xl font-serif font-semibold mb-2 tracking-tight fade-in-up">
+    <section className="relative w-full px-6 py-20 bg-background">
+      <div className="mx-auto w-full max-w-3xl">
+        <h3 className="text-xl font-serif font-semibold tracking-tight fade-in-up mb-3">
           activity
         </h3>
         {!data ? (
@@ -113,7 +113,7 @@ export default async function ActivityGrid() {
           </p>
         )}
 
-        <div className="fade-in-up bg-muted/5 border border-border/20 rounded-sm p-6">
+        <div className="fade-in-up w-full rounded-sm border border-border/20 bg-muted/5 p-5 sm:p-6">
           {data ? <RealGrid weeks={data.weeks} /> : <PlaceholderGrid />}
           <Legend />
         </div>

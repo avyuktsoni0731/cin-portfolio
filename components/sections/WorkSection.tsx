@@ -1,24 +1,38 @@
 'use client'
 
-const WORK_ITEMS = [
+type WorkItem = {
+  title: string
+  /** Optional line under the title — role, org, stack, etc. */
+  role?: string
+  description: string
+  link: string
+}
+
+const WORK_ITEMS: WorkItem[] = [
   {
-    title: 'sprint.dev',
-    description: 'Distribution platform for DevTools. 20k users in 5 months, 48k profit.',
-    link: 'https://sprint.dev',
+    title: 'stick',
+    role: 'co-founder',
+    description:
+      'Distribution platform for DevTools. 20k users in 5 months, 48k profit.',
+    link: 'https://stickapp.club',
   },
   {
     title: 'Real-time Dashboard Systems',
-    description: 'Built several high-frequency dashboard systems for trading and analytics.',
+    description:
+      'Built several high-frequency dashboard systems for trading and analytics.',
     link: '#',
   },
   {
     title: 'Experimental Music on Streaming',
-    description: '240k streams across Spotify and Apple Music as an indie musician.',
+    role: 'indie artist',
+    description:
+      '240k streams across Spotify and Apple Music as an indie musician.',
     link: '#',
   },
   {
     title: 'Open Source TypeScript',
-    description: 'Contributing to Aslllios and other rate limiting libraries.',
+    description:
+      'Contributing to Aslllios and other rate limiting libraries.',
     link: 'https://aslllios.com',
   },
   {
@@ -51,11 +65,20 @@ export default function WorkSection() {
               href={item.link}
               className="group fade-in-up block hover:opacity-75 transition-opacity"
               style={{ animationDelay: `${idx * 100}ms` }}
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              <h3 className="text-lg font-serif font-semibold mb-2 group-hover:underline">
+              <h3
+                className={`text-lg font-serif font-semibold group-hover:underline ${item.role ? 'mb-1' : 'mb-2'}`}
+              >
                 {item.title}
               </h3>
-              <p className="text-sm text-foreground/70 leading-relaxed">
+              {item.role ? (
+                <p className="mb-2 text-[13px] leading-snug text-foreground/45">
+                  {item.role}
+                </p>
+              ) : null}
+              <p className="text-sm leading-relaxed text-foreground/70">
                 {item.description}
               </p>
             </a>
