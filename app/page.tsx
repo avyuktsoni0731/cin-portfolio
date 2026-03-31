@@ -1,3 +1,4 @@
+import { AmbientVideoProvider } from '@/components/AmbientVideoContext'
 import NavHeader from '@/components/NavHeader'
 import SoundToggle from '@/components/SoundToggle'
 import HeroSection from '@/components/sections/HeroSection'
@@ -20,6 +21,7 @@ export default function Home() {
       <AchievementsSection />
       <ThoughtsSection />
       <Footer />
-    </main>
+      </main>
+    </AmbientVideoProvider>
   )
 }
