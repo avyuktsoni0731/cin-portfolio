@@ -2,7 +2,7 @@
 
 export default function NavHeader() {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border/10">
+    <header className="fixed top-0 left-0 right-0 z-50">
       <nav className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo/Name */}
         <a 
@@ -24,20 +24,20 @@ export default function NavHeader() {
           </li>
           <li>
             <a 
-              href="#work" 
+              href="/work" 
               className="hover:opacity-75 transition-opacity"
             >
               work
             </a>
           </li>
-          <li>
+          {/* <li>
             <a 
               href="#writing" 
               className="hover:opacity-75 transition-opacity"
             >
               writing
             </a>
-          </li>
+          </li> */}
         </ul>
       </nav>
     </header>

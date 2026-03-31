@@ -1,39 +1,12 @@
 'use client'
 
-const WORK_ITEMS = [
-  {
-    title: 'sprint.dev',
-    description: 'Distribution platform for DevTools. 20k users in 5 months, 48k profit.',
-    link: 'https://sprint.dev',
-  },
-  {
-    title: 'Real-time Dashboard Systems',
-    description: 'Built several high-frequency dashboard systems for trading and analytics.',
-    link: '#',
-  },
-  {
-    title: 'Experimental Music on Streaming',
-    description: '240k streams across Spotify and Apple Music as an indie musician.',
-    link: '#',
-  },
-  {
-    title: 'Open Source TypeScript',
-    description: 'Contributing to Aslllios and other rate limiting libraries.',
-    link: 'https://aslllios.com',
-  },
-  {
-    title: 'Hackathon Winner',
-    description: 'Won 23 hackathons at YC, UIUC, UIUC, and Princeton.',
-    link: '#',
-  },
-  {
-    title: 'Drone Research',
-    description: 'NASA USRC research and various aerial robotics projects.',
-    link: '#',
-  },
-]
+import Link from 'next/link'
+import { WorkItemsList } from '@/components/WorkItemsList'
+import { ALL_WORK_ITEMS, HOME_WORK_ITEMS, HOME_WORK_COUNT } from '@/lib/work-items'
 
 export default function WorkSection() {
+  const moreCount = ALL_WORK_ITEMS.length - HOME_WORK_COUNT
+
   return (
     <section
       id="work"
@@ -44,23 +17,21 @@ export default function WorkSection() {
           work
         </h2>
 
-        <div className="space-y-12">
-          {WORK_ITEMS.map((item, idx) => (
-            <a
-              key={idx}
-              href={item.link}
-              className="group fade-in-up block hover:opacity-75 transition-opacity"
-              style={{ animationDelay: `${idx * 100}ms` }}
+        <WorkItemsList items={HOME_WORK_ITEMS} />
+
+        {moreCount > 0 ? (
+          <div className="mt-14 fade-in-up border-t border-border/20 pt-10">
+            <Link
+              href="/work"
+              className="inline-flex items-center gap-2 font-mono text-sm text-foreground/55 transition-colors hover:text-foreground"
             >
-              <h3 className="text-lg font-serif font-semibold mb-2 group-hover:underline">
-                {item.title}
-              </h3>
-              <p className="text-sm text-foreground/70 leading-relaxed">
-                {item.description}
-              </p>
-            </a>
-          ))}
-        </div>
+              <span>
+                +{moreCount} more project{moreCount === 1 ? '' : 's'} on the full list
+              </span>
+              <span aria-hidden>→</span>
+            </Link>
+          </div>
+        ) : null}
       </div>
     </section>
   )

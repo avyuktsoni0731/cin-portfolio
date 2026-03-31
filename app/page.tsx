@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import { AmbientVideoProvider } from '@/components/AmbientVideoContext'
 import NavHeader from '@/components/NavHeader'
 import SoundToggle from '@/components/SoundToggle'
@@ -8,6 +9,10 @@ import ActivityGrid from '@/components/sections/ActivityGrid'
 import AchievementsSection from '@/components/sections/AchievementsSection'
 import ThoughtsSection from '@/components/sections/ThoughtsSection'
 import Footer from '@/components/sections/Footer'
+
+export const metadata: Metadata = {
+  alternates: { canonical: '/' },
+}
 
 export default function Home() {
   return (

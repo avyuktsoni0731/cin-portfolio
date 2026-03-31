@@ -1,21 +1,20 @@
 'use client'
 
 const ACHIEVEMENTS = [
-  'Co-built sprint.dev, a DevTools distribution platform with 20k users in 5 months, 48k profit',
-  'Won 23 hackathons at places like YC, UIUC, and Princeton',
-  '240k streams originally on Spotify and Apple Music as an indie musician',
-  'Got 120 mil views on social media with 130k followers',
-  'Drone research at NASA USRC',
-  'Got software engineering infra offers from Disney and Intuit',
-  'Published research on real-time systems and distributed computing',
-  'Built experimental music production tools used by 500+ musicians',
+  'National finalist @ Smart India Hackathon 2025 (Hardware Edition) with NeuroSense — MoE / AICTE grand finale.',
+  'Top 105 / 3,700+ teams @ Google Solution Challenge 2025 — led VoltSense (AI IoT anomaly detection).',
+  'Winner @ Amulate Hackathon (BMW Challenge) with Continuum.ai — selected for internship interview @ BMW Group, Munich.',
+  'Two-time hackathon winner ($1,100 each): Rapid Rebuild (BIOSage 2.0, Best Technical Implementation) and LifeQuest Balance (Zenventures, Best System Design).',
+  'Web & Tech Lead @ Google Developer Groups on Campus, ZHCET — led 13 people across three full-stack projects; later mentor.',
+  'Joint coordinator @ AMURoboclub — TechnoXian 9.0 mentoring; flight & ground software for IN-SPACe CANSAT (ASI); Vercera 4.0 dashboard (200+ registrations, Next.js + PocketBase).',
+  'Head of Web Operations @ IEEE Student Branch, AMU — workshops and events including Code-o-Fiesta 3.0; technical org for AMUROVc 3.0.',
 ]
 
 export default function AchievementsSection() {
   return (
-    <section className="relative w-full py-24 px-6 bg-background">
-      <div className="max-w-3xl mx-auto">
-        <h3 className="text-xl font-serif font-semibold mb-12 tracking-tight fade-in-up">
+    <section className="relative w-full px-6 py-20 bg-background">
+      <div className="mx-auto w-full max-w-3xl">
+        <h3 className="text-xl font-serif font-semibold tracking-tight fade-in-up mb-10">
           highlights
         </h3>
 
@@ -23,11 +22,11 @@ export default function AchievementsSection() {
           {ACHIEVEMENTS.map((achievement, idx) => (
             <li
               key={idx}
-              className="flex gap-4 fade-in-up text-sm text-foreground/80 leading-relaxed"
+              className="fade-in-up flex gap-3 text-sm leading-relaxed text-foreground/80"
               style={{ animationDelay: `${idx * 75}ms` }}
             >
-              <span className="text-primary font-semibold mt-1 flex-shrink-0">•</span>
-              <span>{achievement}</span>
+              <span className="mt-0.5 flex-shrink-0 font-semibold text-primary">•</span>
+              <span className="min-w-0">{achievement}</span>
             </li>
           ))}
         </ul>

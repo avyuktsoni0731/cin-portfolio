@@ -13,6 +13,17 @@ export default function HeroIntro() {
       <p className="mt-5 font-mono text-xs sm:text-sm tracking-wide text-foreground/70">
         builder · hacker · developer
       </p>
+      <p className="mt-3 font-mono text-[11px] text-foreground/50">
+        <a
+          href="https://www.instagram.com/avyukt_builds/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline decoration-border/50 underline-offset-2 transition-colors hover:text-foreground/75"
+        >
+          @avyukt_builds
+        </a>{' '}
+        — builds on camera
+      </p>
       <p
         className="mt-5 text-sm sm:text-[15px] text-foreground/60 leading-relaxed font-light max-w-md mx-auto"
         style={{
