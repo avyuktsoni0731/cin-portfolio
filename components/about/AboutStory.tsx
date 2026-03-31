@@ -128,9 +128,9 @@ export function AboutStory() {
             </p>
             <p>
               hackathons became the default rhythm: ship something real by the
-              deadline, learn what breaks, repeat. i also organized one at
-              sixteen for about two hundred people—less because i loved logistics,
-              more because i wanted the room around the build to exist.
+              deadline, learn what breaks, repeat. the big annual events in my
+              city were already running long before i showed up—i wasn&apos;t
+              the one who built that machine; i just learned to live inside it.
             </p>
           </Prose>
           <figure className="mx-auto w-full max-w-[200px] md:mx-0 md:max-w-none">
@@ -157,7 +157,8 @@ export function AboutStory() {
             i found hackathons the way some people find sports: loud rooms,
             impossible deadlines, strangers who became teammates overnight. the
             rule was simple—ship something by sunday. i started hitting every
-            event i could reach, then organized one at sixteen for ~200 people.
+            event i could reach—including the ones that pack a few hundred people
+            into a hall that had been doing that for years before i arrived.
             robots, ar, tools that shouldn&apos;t have worked but did.
           </p>
           <p>
