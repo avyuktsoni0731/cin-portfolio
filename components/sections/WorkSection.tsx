@@ -11,38 +11,51 @@ type WorkItem = {
 const WORK_ITEMS: WorkItem[] = [
   {
     title: 'stick',
-    role: 'co-founder',
+    role: 'senior full-stack developer',
     description:
-      'Distribution platform for DevTools. 20k users in 5 months, 48k profit.',
+      'Sole developer of the React Native app (Play Store beta) and Express backend—models, controllers, and APIs. Dockerized and deployed services on AWS EC2; own the site, CI/CD, and DevOps.',
     link: 'https://stickapp.club',
   },
   {
-    title: 'Real-time Dashboard Systems',
+    title: 'Continuum.ai',
+    role: 'founder · continuum hq',
     description:
-      'Built several high-frequency dashboard systems for trading and analytics.',
+      'Autonomous agentic stack with Model Context Protocol (MCP) and Agno: natural-language control of Jira, GitHub, and Google Calendar from Slack. FastAPI, PostgreSQL, Redis, Celery, Gemini—cross-platform workflows and scheduling from real-time availability.',
     link: '#',
   },
   {
-    title: 'Experimental Music on Streaming',
-    role: 'indie artist',
+    title: 'NeuroSense',
+    role: 'hardware · signal processing · ML',
     description:
-      '240k streams across Spotify and Apple Music as an indie musician.',
+      'Wearable neurological screening for Parkinson’s and epilepsy: ESP32, 100 Hz tremor analysis with 256-point FFT, MediaPipe + Random Forest on finger-tapping video, WebSockets for sub-100 ms streaming. SIH 2025 National Finalist (Hardware Edition).',
     link: '#',
   },
   {
-    title: 'Open Source TypeScript',
+    title: 'VoltSense',
+    role: 'lead · Google Solution Challenge 2025',
     description:
-      'Contributing to Aslllios and other rate limiting libraries.',
-    link: 'https://aslllios.com',
-  },
-  {
-    title: 'Hackathon Winner',
-    description: 'Won 23 hackathons at YC, UIUC, UIUC, and Princeton.',
+      'AI IoT stack for real-time voltage anomaly detection: custom smart switch, web dashboard, mobile app. Node.js, Firebase, Docker, Cloud Run, Vertex AI (Gemini). Top 105 of 3700+ teams; authoring IEEE Impact 2026 paper.',
     link: '#',
   },
   {
-    title: 'Drone Research',
-    description: 'NASA USRC research and various aerial robotics projects.',
+    title: 'MyCord',
+    role: 'WebRTC · Electron',
+    description:
+      'P2P voice, 4K@60fps screen share, and file transfer over WebRTC. Custom TURN and signaling from scratch; Electron app with live stats, secure IPC, and native screen picker.',
+    link: '#',
+  },
+  {
+    title: 'BIOSage 2.0',
+    role: 'rapid rebuild hackathon · 1st place',
+    description:
+      'BIOS-like web UI over a locally hosted LLaMA 3.2 3B on EC2—offline diagnostics and system vitals via systeminformation. Won $1,000 + Best Technical Implementation.',
+    link: '#',
+  },
+  {
+    title: 'MicroCLI',
+    role: 'Python · embedded',
+    description:
+      'CLI for direct ESP32/Arduino interaction—serial REPL-style commands (LED ON, PING) without constant re-flashing.',
     link: '#',
   },
 ]
@@ -59,14 +72,18 @@ export default function WorkSection() {
         </h2>
 
         <div className="space-y-12">
-          {WORK_ITEMS.map((item, idx) => (
+          {WORK_ITEMS.map((item, idx) => {
+            const external =
+              item.link.startsWith('http') && item.link !== '#'
+            return (
             <a
               key={idx}
               href={item.link}
               className="group fade-in-up block hover:opacity-75 transition-opacity"
               style={{ animationDelay: `${idx * 100}ms` }}
-              target="_blank"
-              rel="noopener noreferrer"
+              {...(external
+                ? { target: '_blank', rel: 'noopener noreferrer' }
+                : {})}
             >
               <h3
                 className={`text-lg font-serif font-semibold group-hover:underline ${item.role ? 'mb-1' : 'mb-2'}`}
@@ -82,7 +99,8 @@ export default function WorkSection() {
                 {item.description}
               </p>
             </a>
-          ))}
+            )
+          })}
         </div>
       </div>
     </section>
