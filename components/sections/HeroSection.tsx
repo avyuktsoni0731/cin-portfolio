@@ -1,6 +1,6 @@
 'use client'
 
-import AsciiPlant from '../AsciiPlant'
+import AsciiInfra from '../AsciiInfra'
 
 export default function HeroSection() {
   return (
@@ -28,9 +28,8 @@ export default function HeroSection() {
 
       {/* Content */}
       <div className="relative h-full flex flex-col items-center justify-center px-6">
-        {/* ASCII Plant */}
         <div className="mb-20 fade-in">
-          <AsciiPlant />
+          <AsciiInfra />
         </div>
       </div>
 

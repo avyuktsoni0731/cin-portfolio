@@ -2,28 +2,21 @@
 
 import { useEffect, useRef, useState } from 'react'
 
-const ASCII_PLANT = `
-      ░░░
-    ░░███░░
-   ░██████░
-    ░██████
-     ░████░
-    ░░████░░
-      ░██░
-      ░██░
-     ░░██░░
-    ░██████░
-    ░██████░
-   ░░░██░░░
-      ░██░
-      ░██░
-     ░████░
-    ░░████░░
-     ░░██░░
-      ░██░
+/** Layered stack — edge → stream → core (infra / real-time systems) */
+const ASCII_INFRA = `
+      ╭──────────────╮
+   ╭──│     edge     │──╮
+   │  ╰──────┬───────╯  │
+   │  ╭──────┴───────╮  │
+   │  │    stream    │  │
+   │  ╰──────┬───────╯  │
+   │  ╭──────┴───────╮  │
+   ╰──│     core     │──╯
+      ╰──────────────╯
+       ◆    ◆    ◆
 `
 
-export default function AsciiPlant() {
+export default function AsciiInfra() {
   const containerRef = useRef<HTMLDivElement>(null)
   const [isHovered, setIsHovered] = useState(false)
 
@@ -51,12 +44,12 @@ export default function AsciiPlant() {
       }`}
     >
       <pre
-        className={`font-mono text-sm whitespace-pre text-center leading-none ${
+        className={`font-mono text-[11px] sm:text-sm whitespace-pre text-center leading-tight ${
           isHovered ? 'text-primary' : 'text-foreground'
         } transition-colors duration-300`}
-        style={{ letterSpacing: '0.1em' }}
+        style={{ letterSpacing: '0.06em' }}
       >
-        {ASCII_PLANT}
+        {ASCII_INFRA}
       </pre>
     </div>
   )
