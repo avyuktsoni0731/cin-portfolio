@@ -1,3 +1,4 @@
+import { AmbientVideoProvider } from '@/components/AmbientVideoContext'
 import NavHeader from '@/components/NavHeader'
 import SoundToggle from '@/components/SoundToggle'
 import HeroSection from '@/components/sections/HeroSection'
@@ -10,16 +11,18 @@ import Footer from '@/components/sections/Footer'
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background">
-      <NavHeader />
-      <HeroSection />
-      <SoundToggle />
-      <AboutSection />
-      <WorkSection />
-      <ActivityGrid />
-      <AchievementsSection />
-      <ThoughtsSection />
-      <Footer />
-    </main>
+    <AmbientVideoProvider>
+      <main className="min-h-screen bg-background">
+        <NavHeader />
+        <HeroSection />
+        <SoundToggle />
+        <AboutSection />
+        <WorkSection />
+        <ActivityGrid />
+        <AchievementsSection />
+        <ThoughtsSection />
+        <Footer />
+      </main>
+    </AmbientVideoProvider>
   )
 }
