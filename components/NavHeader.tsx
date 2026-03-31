@@ -24,7 +24,7 @@ export default function NavHeader() {
           </li>
           <li>
             <a 
-              href="#work" 
+              href="/work" 
               className="hover:opacity-75 transition-opacity"
             >
               work
