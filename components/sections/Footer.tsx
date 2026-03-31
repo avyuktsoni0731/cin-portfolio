@@ -5,28 +5,28 @@ export default function Footer() {
     <footer className="relative w-full py-16 px-6 bg-background border-t border-border/10">
       <div className="max-w-5xl mx-auto">
         <div className="flex flex-col md:flex-row items-center justify-center gap-8 mb-12 fade-in-up">
-          <a
+          {/* <a
             href="#"
             className="text-sm hover:opacity-75 transition-opacity"
           >
             prev
-          </a>
+          </a> */}
 
           <div className="font-serif font-semibold tracking-wide">
             avyukt soni
           </div>
 
-          <a
+          {/* <a
             href="#"
             className="text-sm hover:opacity-75 transition-opacity"
           >
             next
-          </a>
+          </a> */}
         </div>
 
         <div className="flex flex-col md:flex-row items-center justify-center gap-6 text-xs text-foreground/50 fade-in-up">
           <a
-            href="https://github.com"
+            href="https://github.com/avyuktsoni0731"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-foreground/75 transition-colors"
@@ -34,7 +34,7 @@ export default function Footer() {
             github
           </a>
           <a
-            href="https://twitter.com"
+            href="https://x.com/avyukt_soni"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-foreground/75 transition-colors"
@@ -42,13 +42,13 @@ export default function Footer() {
             twitter
           </a>
           <a
-            href="mailto:contact@example.com"
+            href="mailto:soniavyukt@gmail.com"
             className="hover:text-foreground/75 transition-colors"
           >
             email
           </a>
           <a
-            href="https://linkedin.com"
+            href="https://linkedin.com/in/avyuktsoni0731"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-foreground/75 transition-colors"
