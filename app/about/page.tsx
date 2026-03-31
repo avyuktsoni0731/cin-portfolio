@@ -6,7 +6,7 @@ import Footer from '@/components/sections/Footer'
 export const metadata: Metadata = {
   title: 'About · Avyukt Soni',
   description:
-    'Builder, hacker, and computer engineering student at AMU — hackathons, Stick, Continuum, open source, and the long story behind the commits.',
+    'The longer version — AMU ZHCET, Stick, Continuum, hackathons, student orgs, and what gets shipped.',
 }
 
 export default function AboutPage() {

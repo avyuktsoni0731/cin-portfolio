@@ -37,7 +37,6 @@ export function AboutStory() {
 
   return (
     <article className="relative overflow-hidden">
-      {/* Ambient top */}
       <div
         className="pointer-events-none absolute inset-x-0 top-0 h-[42rem] opacity-30"
         style={{
@@ -58,7 +57,7 @@ export function AboutStory() {
           <p className="max-w-2xl text-base leading-relaxed text-foreground/70 md:text-lg">
             i&apos;m{' '}
             <span className="text-foreground/90">avyukt soni</span> — computer
-            engineering undergrad at{' '}
+            engineering at{' '}
             <span className="text-foreground/90">AMU (ZHCET)</span>, full-stack
             at{' '}
             <Link
@@ -74,8 +73,10 @@ export function AboutStory() {
             >
               continuum
             </Link>
-            , and someone who can&apos;t leave a broken circuit—or a broken
-            deploy pipeline—alone.
+            . i spend most of my energy on mobile + backend, agents, pr
+            automation, and hardware-heavy spikes—esp32, wearables, iot when the
+            problem asks for it. i can&apos;t leave a broken circuit or a broken
+            deploy pipeline alone.
           </p>
         </header>
 
@@ -87,22 +88,20 @@ export function AboutStory() {
           </blockquote>
         </figure>
 
-        {/* Avatar + intro */}
+        {/* Avatar + intro — only what maps to your story (resume / linkedin), no filler hobbies */}
         <div className="mb-20 grid gap-10 md:grid-cols-[minmax(0,1fr)_200px] md:items-start">
           <Prose>
             <p>
-              before i knew what &ldquo;distributed systems&rdquo; meant, i was
-              the kid who took everything apart—remote controls, old PCs,
-              anything with screws. failure wasn&apos;t embarrassing; it was
-              data. my parents stacked books at home; i stacked half-working
-              breadboards in the garage.
+              i&apos;ve always learned by taking hardware apart and putting it
+              back together—that turned into arduino builds and, later, the same
+              instinct applied to backends and deploys: make the signal path
+              obvious, then make it reliable.
             </p>
             <p>
-              in middle school that turned into game modding and Arduino: a
-              weather station pushing readings to a junk-bin server. it barely
-              worked—but it was{' '}
-              <em className="text-foreground/90 not-italic">real-time</em>, and
-              that word never left my head.
+              hackathons became the default rhythm: ship something real by the
+              deadline, learn what breaks, repeat. i also organized one at
+              sixteen for about two hundred people—less because i loved logistics,
+              more because i wanted the room around the build to exist.
             </p>
           </Prose>
           <figure className="mx-auto w-full max-w-[200px] md:mx-0 md:max-w-none">
@@ -130,7 +129,7 @@ export function AboutStory() {
             impossible deadlines, strangers who became teammates overnight. the
             rule was simple—ship something by sunday. i started hitting every
             event i could reach, then organized one at sixteen for ~200 people.
-            robots, drones, AR, tools that shouldn&apos;t have worked but did.
+            robots, ar, tools that shouldn&apos;t have worked but did.
           </p>
           <p>
             that&apos;s when it clicked: i didn&apos;t only want to build{' '}
@@ -165,12 +164,15 @@ export function AboutStory() {
             infrastructure—for myself and for hundreds of others on campus.
           </p>
           <p>
-            as <strong className="font-medium text-foreground/90">web &amp; tech lead</strong>{' '}
+            as{' '}
+            <strong className="font-medium text-foreground/90">
+              web &amp; tech lead
+            </strong>{' '}
             at{' '}
             <strong className="font-medium text-foreground/90">
               google developer groups on campus (ZHCET)
             </strong>
-            , i led ~13 people across three serious full-stack builds, mentored
+            , i led ~13 people across three full-stack builds, mentored
             volunteers, and took our team&apos;s{' '}
             <Link
               href="https://github.com/GDSC-ZHCET/VoltSense"
@@ -178,15 +180,15 @@ export function AboutStory() {
             >
               VoltSense
             </Link>{' '}
-            project to the{' '}
+            to the{' '}
             <strong className="font-medium text-foreground/90">
               top 105 of 3,700+
             </strong>{' '}
-            submissions in the{' '}
+            in the{' '}
             <strong className="font-medium text-foreground/90">
               google solution challenge 2025
             </strong>
-            . later i stayed on as a mentor—same energy, slightly less sleep.
+            . later i stayed on as a mentor.
           </p>
           <p>
             with{' '}
@@ -199,29 +201,29 @@ export function AboutStory() {
             <strong className="font-medium text-foreground/90">
               IN-SPACe CANSAT
             </strong>{' '}
-            mission with the Astronautical Society of India, and shipped a{' '}
+            mission (ASI), and shipped a{' '}
             <strong className="font-medium text-foreground/90">Next.js</strong>{' '}
             +{' '}
             <strong className="font-medium text-foreground/90">PocketBase</strong>{' '}
             registration stack for{' '}
             <strong className="font-medium text-foreground/90">Vercera 4.0</strong>{' '}
-            that handled 200+ signups without drama.
+            (200+ signups).
           </p>
           <p>
-            ieee gave me another lane—head of web operations,{' '}
+            <strong className="font-medium text-foreground/90">IEEE</strong> —
+            head of web operations,{' '}
             <strong className="font-medium text-foreground/90">
               Code-o-Fiesta 3.0
             </strong>
             , technical org for{' '}
             <strong className="font-medium text-foreground/90">
               AMUROVc 3.0
-            </strong>{' '}
-            (national underwater vehicle competition). same through-line: make
-            the event work when nobody&apos;s watching the logs.
+            </strong>
+            .
           </p>
         </Prose>
 
-        {/* GitHub embed card */}
+        {/* GitHub */}
         <div className="my-16 rounded-sm border border-border/30 bg-gradient-to-br from-muted/10 to-transparent p-6 md:p-8">
           <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
             <div>
@@ -248,29 +250,26 @@ export function AboutStory() {
         <Prose>
           <p>
             <strong className="font-medium text-foreground/90">stick</strong> —
-            i own the react native app (play beta), the express backend end to
-            end, docker on{' '}
+            react native app (play beta), express backend end to end, docker on{' '}
             <strong className="font-medium text-foreground/90">AWS EC2</strong>,
-            and the boring-but-critical stuff: CI/CD, the marketing site, and
-            keeping prod boring.
+            ci/cd, marketing site, keeping prod boring.
           </p>
           <p>
             <strong className="font-medium text-foreground/90">continuum</strong>{' '}
-            — agentic workflows over slack using{' '}
+            — agentic workflows over slack:{' '}
             <strong className="font-medium text-foreground/90">MCP</strong>,{' '}
             <strong className="font-medium text-foreground/90">FastAPI</strong>,{' '}
-            postgres, redis, celery, and models that actually understand context
-            across jira, github, and calendar.
+            postgres, redis, celery, context across jira, github, calendar.
           </p>
           <p>
             <strong className="font-medium text-foreground/90">commitlens</strong>{' '}
-            — an open-source pr review agent: webhooks, bug detectors, learning
-            from human comments, claude summaries, slack pings—the whole loop.
+            — open-source pr review agent: webhooks, detectors, learning from
+            human comments, claude summaries, slack.
           </p>
           <p>
             <strong className="font-medium text-foreground/90">neurosense</strong>{' '}
-            — wearable screening for parkinson&apos;s &amp; epilepsy: esp32,
-            tremor fft, mediapipe + random forest, sub-100ms websockets.{' '}
+            — wearable screening; esp32, fft, mediapipe + random forest,
+            sub-100ms websockets.{' '}
             <strong className="font-medium text-foreground/90">
               SIH 2025 national finalist
             </strong>
@@ -278,26 +277,27 @@ export function AboutStory() {
           </p>
           <p>
             <strong className="font-medium text-foreground/90">zenventures</strong>{' '}
-            — lifequest balance winner: gamified habits, firebase, gemini
-            insights—built with my teammate shashank when we decided habit
-            tracking deserved better lore than a checklist.
+            — lifequest balance winner; next.js, firebase, gemini—with shashank
+            chauhan.
           </p>
           <p className="text-foreground/55">
-            more builds—including{' '}
-            <Link href="/work" className="underline underline-offset-2 hover:text-foreground/80">
-              the full project archive
+            more builds on the{' '}
+            <Link
+              href="/work"
+              className="underline underline-offset-2 hover:text-foreground/80"
+            >
+              full work page
             </Link>
-            —live on the work page.
+            .
           </p>
         </Prose>
 
-        {/* Optional reel */}
         {reelId ? (
           <div className="my-16 space-y-4">
             <SectionTitle kicker="motion">a reel, not a pitch</SectionTitle>
             <p className="mb-4 text-sm text-foreground/55">
-              same piece that sits behind the home hero—sound off by default;
-              unmute from the floating control if you want the room to breathe.
+              same piece as the home hero—mute by default; use the floating
+              control if you want sound.
             </p>
             <div className="aspect-video overflow-hidden rounded-sm border border-border/30 bg-black shadow-[0_0_0_1px_rgba(255,255,255,0.04)]">
               <iframe
@@ -311,48 +311,28 @@ export function AboutStory() {
           </div>
         ) : null}
 
-        <SectionTitle kicker="04">music · drones · the non-repo self</SectionTitle>
-        <Prose>
-          <p>
-            i produce experimental music—enough that streaming numbers became
-            their own kind of system to optimize. i fly and think about drones
-            and research (including work that intersects with serious
-            institutions). it all feeds the same obsession:{' '}
-            <em className="text-foreground/90 not-italic">
-              closed loops, honest sensors, and stories that don&apos;t need a
-              deck to land.
-            </em>
-          </p>
-        </Prose>
-
-        {/* Philosophy */}
+        {/* Principles — same three you had on the site before */}
         <div className="my-16 border border-border/30 bg-muted/[0.07] p-8 md:p-10">
           <h3 className="mb-6 font-serif text-lg text-foreground/90">
-            how i actually decide what to build
+            how i think about building
           </h3>
-          <ul className="space-y-4 text-sm leading-relaxed text-foreground/75">
-            <li className="flex gap-3">
-              <span className="font-mono text-foreground/35">01</span>
-              <span>
-                <strong className="text-foreground/90">systems over features.</strong>{' '}
-                good architecture pulls good product behind it.
-              </span>
-            </li>
-            <li className="flex gap-3">
-              <span className="font-mono text-foreground/35">02</span>
-              <span>
-                <strong className="text-foreground/90">constraints first.</strong>{' '}
-                the deadline, the silicon, the policy—name them early.
-              </span>
-            </li>
-            <li className="flex gap-3">
-              <span className="font-mono text-foreground/35">03</span>
-              <span>
-                <strong className="text-foreground/90">ship, then learn.</strong>{' '}
-                perfect is a myth; feedback isn&apos;t.
-              </span>
-            </li>
-          </ul>
+          <div className="space-y-3 text-xs leading-relaxed text-foreground/75 md:text-sm">
+            <p>
+              <span className="text-foreground/90">systems over features.</span>{' '}
+              a well-designed system naturally produces good features. spend time
+              on architecture, not decoration.
+            </p>
+            <p>
+              <span className="text-foreground/90">constraints breed creativity.</span>{' '}
+              the best work happens when you have limits. work within them, and
+              you&apos;ll find elegant solutions.
+            </p>
+            <p>
+              <span className="text-foreground/90">ship early, iterate always.</span>{' '}
+              perfect is the enemy of done. get something working, learn,
+              improve.
+            </p>
+          </div>
         </div>
 
         {/* Tech strip */}
@@ -386,7 +366,6 @@ export function AboutStory() {
           </div>
         </div>
 
-        {/* Closing */}
         <footer className="border-t border-border/20 pt-12">
           <p className="mb-6 text-sm leading-relaxed text-foreground/70">
             if you&apos;re building something stubbornly ambitious—infra,
