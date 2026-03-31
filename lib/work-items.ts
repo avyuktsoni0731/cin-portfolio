@@ -14,7 +14,7 @@ export const HOME_WORK_COUNT = 5
 
 export const ALL_WORK_ITEMS: WorkItem[] = [
   {
-    title: 'stick',
+    title: 'Stick',
     role: 'senior full-stack developer',
     description:
       'Sole developer of the React Native app (Play Store beta) and Express backend—models, controllers, and APIs. Dockerized and deployed services on AWS EC2; own the site, CI/CD, and DevOps.',
@@ -26,20 +26,6 @@ export const ALL_WORK_ITEMS: WorkItem[] = [
     description:
       'Autonomous agentic stack with Model Context Protocol (MCP) and Agno: natural-language control of Jira, GitHub, and Google Calendar from Slack. FastAPI, PostgreSQL, Redis, Celery, Gemini—cross-platform workflows and scheduling from real-time availability.',
     link: 'https://www.continuumworks.app',
-  },
-  {
-    title: 'Zenventures',
-    role: 'LifeQuest Balance 2025 · 1st overall + system design ($1,100)',
-    description:
-      'Gamified habit web app—quests, XP, streaks, chain-reaction rewards, goal-gradient mechanics, and Gemini-powered insights that generate custom quests from your progress. Next.js, Firebase Auth + Firestore (no hardcoded data), Gemini API. Built with Shashank Chauhan; deployed on Vercel.',
-    link: 'https://github.com/avyuktsoni0731/Zenventure',
-  },
-  {
-    title: 'CommitLens',
-    role: 'open source · FastAPI · GitHub App',
-    description:
-      'PR review agent: instant reviews on PR open/update, AST/pattern bug detection, learning from human comments (PostgreSQL), Claude summaries, Slack notifications. Python 3.11, Redis/RQ workers, Docker, Cloud Run + Neon.',
-    link: 'https://github.com/avyuktsoni0731/CommitLens',
   },
   {
     title: 'NeuroSense',
@@ -56,6 +42,27 @@ export const ALL_WORK_ITEMS: WorkItem[] = [
     link: 'https://github.com/GDSC-ZHCET/VoltSense',
   },
   {
+    title: 'CommitLens',
+    role: 'open source · FastAPI · GitHub App',
+    description:
+      'PR review agent: instant reviews on PR open/update, AST/pattern bug detection, learning from human comments (PostgreSQL), Claude summaries, Slack notifications. Python 3.11, Redis/RQ workers, Docker, Cloud Run + Neon.',
+    link: 'https://github.com/avyuktsoni0731/CommitLens',
+  },
+  {
+    title: 'Zenventures',
+    role: 'LifeQuest Balance 2025 · 1st overall + system design ($1,100)',
+    description:
+      'Gamified habit web app—quests, XP, streaks, chain-reaction rewards, goal-gradient mechanics, and Gemini-powered insights that generate custom quests from your progress. Next.js, Firebase Auth + Firestore (no hardcoded data), Gemini API. Built with Shashank Chauhan; deployed on Vercel.',
+    link: 'https://github.com/avyuktsoni0731/Zenventure',
+  },
+  {
+    title: 'MicroCLI',
+    role: 'Python · embedded',
+    description:
+      'CLI for direct ESP32/Arduino interaction—serial REPL-style commands (LED ON, PING) without constant re-flashing.',
+    link: 'https://github.com/avyuktsoni0731/microcli',
+  },
+  {
     title: 'MyCord',
     role: 'WebRTC · Electron',
     description:
@@ -68,13 +75,6 @@ export const ALL_WORK_ITEMS: WorkItem[] = [
     description:
       'BIOS-like web UI over a locally hosted LLaMA 3.2 3B on EC2—offline diagnostics and system vitals via systeminformation. Won $1,000 + Best Technical Implementation.',
     link: 'https://github.com/avyuktsoni0731/BIOSage',
-  },
-  {
-    title: 'MicroCLI',
-    role: 'Python · embedded',
-    description:
-      'CLI for direct ESP32/Arduino interaction—serial REPL-style commands (LED ON, PING) without constant re-flashing.',
-    link: '#',
   },
   {
     title: 'CipherVault',
