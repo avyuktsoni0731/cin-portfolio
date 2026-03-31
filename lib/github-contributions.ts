@@ -1,6 +1,9 @@
 /**
- * GitHub GraphQL: contribution calendar for a user (same data as the profile heatmap).
- * Requires GITHUB_TOKEN + GITHUB_USERNAME in env (server-only; never expose the token).
+ * GitHub GraphQL: contribution calendar (same data as the profile heatmap).
+ * Requires GITHUB_TOKEN + GITHUB_USERNAME in env (server-only).
+ *
+ * Default: last ~365 days (rolling), like github.com profile.
+ * Set GITHUB_ACTIVITY_YEAR=2026 to pin a calendar year instead.
  */
 
 type GraphQLResponse = {
@@ -51,9 +54,11 @@ export type ContributionDayCell = {
 
 export type ContributionCalendarResult = {
   login: string
-  year: number
+  /** 'rolling' = last ~365 days; 'calendar_year' = Jan 1–Dec 31 */
+  periodMode: 'rolling' | 'calendar_year'
+  /** e.g. "last ~365 days" or "2026" */
+  periodLabel: string
   totalContributions: number
-  /** Columns = weeks (Sun→Sat rows), same order as github.com */
   weeks: ContributionDayCell[][]
   maxCount: number
 }
@@ -67,23 +72,41 @@ function countToLevel(count: number, max: number): 0 | 1 | 2 | 3 {
   return 3
 }
 
-export async function getGithubContributionCalendar(
-  year?: number
-): Promise<ContributionCalendarResult | null> {
+function rolling365Range(): { fromIso: string; toIso: string } {
+  const end = new Date()
+  const start = new Date(end.getTime() - 364 * 24 * 60 * 60 * 1000)
+  return { fromIso: start.toISOString(), toIso: end.toISOString() }
+}
+
+export async function getGithubContributionCalendar(): Promise<ContributionCalendarResult | null> {
   const login = process.env.GITHUB_USERNAME?.trim()
   const token = process.env.GITHUB_TOKEN?.trim()
   const envYear = process.env.GITHUB_ACTIVITY_YEAR?.trim()
   const parsedEnvYear = envYear ? parseInt(envYear, 10) : NaN
-  const y =
-    year ??
-    (!Number.isNaN(parsedEnvYear) ? parsedEnvYear : new Date().getFullYear())
+  const useCalendarYear = !Number.isNaN(parsedEnvYear)
 
   if (!login || !token) {
     return null
   }
 
-  const fromIso = `${y}-01-01T00:00:00Z`
-  const toIso = `${y}-12-31T23:59:59Z`
+  let fromIso: string
+  let toIso: string
+  let periodMode: 'rolling' | 'calendar_year'
+  let periodLabel: string
+
+  if (useCalendarYear) {
+    const y = parsedEnvYear
+    fromIso = `${y}-01-01T00:00:00Z`
+    toIso = `${y}-12-31T23:59:59Z`
+    periodMode = 'calendar_year'
+    periodLabel = String(y)
+  } else {
+    const r = rolling365Range()
+    fromIso = r.fromIso
+    toIso = r.toIso
+    periodMode = 'rolling'
+    periodLabel = 'last ~365 days'
+  }
 
   try {
     const res = await fetch('https://api.github.com/graphql', {
@@ -140,7 +163,8 @@ export async function getGithubContributionCalendar(
 
     return {
       login,
-      year: y,
+      periodMode,
+      periodLabel,
       totalContributions: cal.totalContributions,
       weeks,
       maxCount,
