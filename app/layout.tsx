@@ -59,17 +59,19 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
   icons: {
     icon: [
+      { url: '/favicon.ico', type: 'image/x-icon' },
+      { url: '/as.png', type: 'image/png', sizes: '512x512' },
       {
         url: '/icon-light-32x32.png',
         media: '(prefers-color-scheme: light)',
+        type: 'image/png',
+        sizes: '32x32',
       },
       {
         url: '/icon-dark-32x32.png',
         media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
+        type: 'image/png',
+        sizes: '32x32',
       },
     ],
     apple: '/apple-icon.png',
