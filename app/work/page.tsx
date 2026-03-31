@@ -6,9 +6,10 @@ import Footer from '@/components/sections/Footer'
 import { ALL_WORK_ITEMS } from '@/lib/work-items'
 
 export const metadata: Metadata = {
-  title: 'Work · Avyukt Soni',
+  title: 'Work',
   description:
     'Projects across full-stack, agents, hardware, DevTools, and hackathon builds.',
+  alternates: { canonical: '/work' },
 }
 
 export default function WorkPage() {

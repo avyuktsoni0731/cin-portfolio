@@ -4,9 +4,10 @@ import { AboutStory } from '@/components/about/AboutStory'
 import Footer from '@/components/sections/Footer'
 
 export const metadata: Metadata = {
-  title: 'About · Avyukt Soni',
+  title: 'About',
   description:
-    'The longer version — AMU ZHCET, Stick, Continuum, hackathons, student orgs, and what gets shipped.',
+    'The longer version — AMU ZHCET, Stick, Continuum, hackathons, student orgs, research, @avyukt_builds, and what gets shipped.',
+  alternates: { canonical: '/about' },
 }
 
 export default function AboutPage() {
