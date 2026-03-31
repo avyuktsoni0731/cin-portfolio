@@ -55,6 +55,14 @@ export default function Footer() {
           >
             linkedin
           </a>
+          <a
+            href="https://www.instagram.com/avyukt_builds/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-foreground/75 transition-colors"
+          >
+            instagram
+          </a>
         </div>
 
         <div className="text-center mt-12 text-xs text-foreground/30 fade-in-up">

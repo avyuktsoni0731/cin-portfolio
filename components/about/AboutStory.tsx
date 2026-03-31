@@ -4,6 +4,7 @@ import Link from 'next/link'
 
 const GITHUB_USER = 'avyuktsoni0731'
 const AVATAR_SRC = `https://github.com/${GITHUB_USER}.png`
+const INSTAGRAM_BUILDS = 'https://www.instagram.com/avyukt_builds/'
 
 function SectionTitle({
   children,
@@ -54,30 +55,58 @@ export function AboutStory() {
           <h1 className="font-serif text-4xl font-semibold leading-[1.1] tracking-tight md:text-5xl">
             i build systems that still make sense at 2am.
           </h1>
-          <p className="max-w-2xl text-base leading-relaxed text-foreground/70 md:text-lg">
-            i&apos;m{' '}
-            <span className="text-foreground/90">avyukt soni</span> — computer
-            engineering at{' '}
-            <span className="text-foreground/90">AMU (ZHCET)</span>, full-stack
-            at{' '}
-            <Link
-              href="https://stickapp.club"
-              className="text-foreground/80 underline decoration-border underline-offset-4 transition-colors hover:text-foreground"
-            >
-              stick
-            </Link>
-            , founder at{' '}
-            <Link
-              href="https://www.continuumworks.app"
-              className="text-foreground/80 underline decoration-border underline-offset-4 transition-colors hover:text-foreground"
-            >
-              continuum
-            </Link>
-            . i spend most of my energy on mobile + backend, agents, pr
-            automation, and hardware-heavy spikes—esp32, wearables, iot when the
-            problem asks for it. i can&apos;t leave a broken circuit or a broken
-            deploy pipeline alone.
-          </p>
+          <div className="max-w-2xl space-y-5 text-base leading-relaxed text-foreground/70 md:text-lg">
+            <p>
+              i&apos;m{' '}
+              <span className="text-foreground/90">avyukt</span> —{' '}
+              <span className="text-foreground/90">
+                computer engineering
+              </span>{' '}
+              at <span className="text-foreground/90">AMU (ZHCET)</span>,{' '}
+              <span className="text-foreground/90">pre-final year</span>. i work
+              full-stack at a startup (
+              <Link
+                href="https://stickapp.club"
+                className="text-foreground/85 underline decoration-border underline-offset-4 transition-colors hover:text-foreground"
+              >
+                stick
+              </Link>
+              ), run my own company (
+              <Link
+                href="https://www.continuumworks.app"
+                className="text-foreground/85 underline decoration-border underline-offset-4 transition-colors hover:text-foreground"
+              >
+                continuum
+              </Link>
+              ), ship apps, jump into hardware when the problem isn&apos;t only
+              software, and i&apos;m working toward an{' '}
+              <span className="text-foreground/90">
+                international conference paper
+              </span>{' '}
+              (voltSense / ieee impact line—still in motion).
+            </p>
+            <p>
+              when a project needs it, i handle photography, editing, and
+              graphics myself. lately i&apos;ve been putting more of the build
+              process on camera—short videos of the messy middle live on{' '}
+              <a
+                href={INSTAGRAM_BUILDS}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-mono text-foreground/85 underline decoration-border underline-offset-4 transition-colors hover:text-foreground"
+              >
+                @avyukt_builds
+              </a>{' '}
+              on instagram.
+            </p>
+            <p>
+              my founder thinks i&apos;m self-obsessed. i&apos;m choosing to read
+              that as alignment on narrative. the rest of my time still goes to
+              mobile + backend, agents, pr automation, and hardware spikes—esp32,
+              wearables, iot—anything where i can&apos;t sleep until the signal
+              path makes sense.
+            </p>
+          </div>
         </header>
 
         {/* Pull quote */}
@@ -180,7 +209,8 @@ export function AboutStory() {
             >
               VoltSense
             </Link>{' '}
-            to the{' '}
+            (same track that&apos;s headed toward an ieee-venue paper on smart
+            energy / anomaly detection) to the{' '}
             <strong className="font-medium text-foreground/90">
               top 105 of 3,700+
             </strong>{' '}
@@ -242,6 +272,30 @@ export function AboutStory() {
               className="inline-flex shrink-0 items-center justify-center rounded-sm border border-border/40 bg-background/60 px-5 py-3 font-mono text-sm text-foreground/80 transition-colors hover:border-border hover:bg-muted/20 hover:text-foreground"
             >
               @{GITHUB_USER} →
+            </a>
+          </div>
+        </div>
+
+        {/* Instagram builds */}
+        <div className="my-16 rounded-sm border border-border/30 bg-gradient-to-br from-muted/5 to-transparent p-6 md:p-8">
+          <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+            <div>
+              <p className="mb-2 font-mono text-xs text-foreground/45">
+                builds in motion
+              </p>
+              <p className="font-serif text-lg text-foreground/90">
+                the unpolished parts—solder smoke, failed runs, the one commit that
+                finally greened—usually end up as reels on instagram before they
+                end up here.
+              </p>
+            </div>
+            <a
+              href={INSTAGRAM_BUILDS}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex shrink-0 items-center justify-center rounded-sm border border-border/40 bg-background/60 px-5 py-3 font-mono text-sm text-foreground/80 transition-colors hover:border-border hover:bg-muted/20 hover:text-foreground"
+            >
+              @avyukt_builds →
             </a>
           </div>
         </div>
@@ -366,6 +420,18 @@ export function AboutStory() {
           </div>
         </div>
 
+        <div className="my-16 border border-dashed border-border/30 bg-muted/[0.04] p-6 md:p-8">
+          <p className="mb-2 font-mono text-[11px] uppercase tracking-[0.15em] text-foreground/35">
+            fine print
+          </p>
+          <p className="text-xs leading-relaxed text-foreground/55 md:text-sm">
+            allergic to dust and pollen; breathing stuff that means i basically
+            wake up and sleep with a cold most days. i compensate with probably
+            too much coffee and diet coke. if i seem low-energy in a dusty room,
+            it&apos;s not you—it&apos;s my lungs filing a complaint.
+          </p>
+        </div>
+
         <footer className="border-t border-border/20 pt-12">
           <p className="mb-6 text-sm leading-relaxed text-foreground/70">
             if you&apos;re building something stubbornly ambitious—infra,
@@ -396,6 +462,15 @@ export function AboutStory() {
               className="text-foreground/80 underline decoration-border underline-offset-4 transition-colors hover:text-foreground"
             >
               github
+            </a>
+            <span className="text-foreground/25">·</span>
+            <a
+              href={INSTAGRAM_BUILDS}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-foreground/80 underline decoration-border underline-offset-4 transition-colors hover:text-foreground"
+            >
+              instagram
             </a>
           </div>
           <p className="mt-10 font-mono text-[11px] text-foreground/35">
