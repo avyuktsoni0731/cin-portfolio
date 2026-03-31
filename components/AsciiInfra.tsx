@@ -2,19 +2,19 @@
 
 import { useEffect, useRef, useState } from 'react'
 
-/** Layered stack — edge → stream → core (infra / real-time systems) */
-const ASCII_INFRA = `
-      ╭──────────────╮
-   ╭──│     edge     │──╮
-   │  ╰──────┬───────╯  │
-   │  ╭──────┴───────╮  │
-   │  │    stream    │  │
-   │  ╰──────┬───────╯  │
-   │  ╭──────┴───────╮  │
-   ╰──│     core     │──╯
-      ╰──────────────╯
-       ◆    ◆    ◆
-`
+/** Plain ASCII (+ - |); no letter-spacing so columns stay aligned. */
+const ASCII_INFRA = `      +--------------------+
+      |       edge         |
+      +----------+---------+
+                 |
+      +----------+---------+
+      |      stream        |
+      +----------+---------+
+                 |
+      +----------+---------+
+      |       core         |
+      +--------------------+
+        *     *     *`
 
 export default function AsciiInfra() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -44,10 +44,10 @@ export default function AsciiInfra() {
       }`}
     >
       <pre
-        className={`font-mono text-[11px] sm:text-sm whitespace-pre text-center leading-tight ${
+        className={`font-mono text-[11px] sm:text-sm whitespace-pre text-center leading-none ${
           isHovered ? 'text-primary' : 'text-foreground'
         } transition-colors duration-300`}
-        style={{ letterSpacing: '0.06em' }}
+        style={{ letterSpacing: 0 }}
       >
         {ASCII_INFRA}
       </pre>
