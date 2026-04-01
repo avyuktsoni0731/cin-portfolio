@@ -2,7 +2,13 @@
 
 import Link from 'next/link'
 import { WorkItemsList } from '@/components/WorkItemsList'
-import { ALL_WORK_ITEMS, HOME_WORK_ITEMS, HOME_WORK_COUNT } from '@/lib/work-items'
+import {
+  ALL_WORK_ITEMS,
+  HOME_WORK_ITEMS,
+  HOME_WORK_COUNT,
+} from '@/lib/work-items'
+import { NoisePanel } from '@/components/visual/NoisePanel'
+import { SectionOrnament, StackLayersMark } from '@/components/visual/DecorIcons'
 
 export default function WorkSection() {
   const moreCount = ALL_WORK_ITEMS.length - HOME_WORK_COUNT
@@ -10,23 +16,34 @@ export default function WorkSection() {
   return (
     <section
       id="work"
-      className="relative w-full py-24 px-6 bg-background"
+      className="relative w-full overflow-hidden py-24 px-6 bg-background"
     >
-      <div className="max-w-3xl mx-auto">
-        <h2 className="text-4xl font-serif font-semibold mb-16 tracking-tight fade-in-up">
-          work
-        </h2>
+      <div className="relative mx-auto max-w-3xl">
+        <SectionOrnament className="mb-12" />
+
+        <div className="mb-14 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+          <h2 className="fade-in-up font-serif text-4xl font-semibold tracking-tight">
+            work
+          </h2>
+          <NoisePanel className="px-4 py-3 sm:max-w-[200px]">
+            <StackLayersMark className="h-10 w-full text-foreground" />
+            <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.15em] text-foreground/35">
+              stacks & experiments
+            </p>
+          </NoisePanel>
+        </div>
 
         <WorkItemsList items={HOME_WORK_ITEMS} />
 
         {moreCount > 0 ? (
-          <div className="mt-14 fade-in-up border-t border-border/20 pt-10">
+          <div className="fade-in-up mt-14 border-t border-border/20 pt-10">
             <Link
               href="/work"
               className="inline-flex items-center gap-2 font-mono text-sm text-foreground/55 transition-colors hover:text-foreground"
             >
               <span>
-                +{moreCount} more project{moreCount === 1 ? '' : 's'} on the full list
+                +{moreCount} more project{moreCount === 1 ? '' : 's'} on the full
+                list
               </span>
               <span aria-hidden>→</span>
             </Link>
