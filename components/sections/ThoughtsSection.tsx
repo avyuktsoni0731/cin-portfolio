@@ -1,5 +1,7 @@
 'use client'
 
+import { JournalSpineMark, SectionOrnament } from '@/components/visual/DecorIcons'
+
 const THOUGHTS = [
   {
     date: 'march 2026',
@@ -32,32 +34,41 @@ export default function ThoughtsSection() {
   return (
     <section
       id="writing"
-      className="relative w-full py-24 px-6 bg-background"
+      className="relative w-full overflow-hidden py-24 px-6 bg-background"
     >
-      <div className="max-w-3xl mx-auto">
-        <h3 className="text-xl font-serif font-semibold mb-12 tracking-tight fade-in-up">
-          current thoughts
-        </h3>
+      <div className="mx-auto max-w-3xl">
+        <SectionOrnament className="mb-10" />
 
-        <div className="space-y-6">
-          {THOUGHTS.map((thought, idx) => (
-            <div
-              key={idx}
-              className="fade-in-up border-l border-border/30 pl-6 py-2"
-              style={{ animationDelay: `${idx * 100}ms` }}
-            >
-              <p className="font-mono text-xs text-foreground/50 mb-2">
-                {thought.date}
-              </p>
-              <p className="text-sm text-foreground/80">{thought.entry}</p>
+        <div className="mb-12 flex flex-col gap-6 md:flex-row md:items-start md:gap-10">
+          <div className="hidden shrink-0 opacity-50 md:block">
+            <JournalSpineMark className="h-32 w-10 text-foreground" />
+          </div>
+          <div className="min-w-0 flex-1">
+            <h3 className="mb-10 text-xl font-serif font-semibold tracking-tight fade-in-up">
+              current thoughts
+            </h3>
+
+            <div className="space-y-6">
+              {THOUGHTS.map((thought, idx) => (
+                <div
+                  key={idx}
+                  className="fade-in-up border-l border-border/30 py-2 pl-6"
+                  style={{ animationDelay: `${idx * 100}ms` }}
+                >
+                  <p className="mb-2 font-mono text-xs text-foreground/50">
+                    {thought.date}
+                  </p>
+                  <p className="text-sm text-foreground/80">{thought.entry}</p>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
 
-        <div className="mt-12 text-center fade-in-up">
-          <p className="text-xs text-foreground/50">
-            more thoughts coming soon...
-          </p>
+            <div className="mt-12 text-center fade-in-up">
+              <p className="text-xs text-foreground/50">
+                more thoughts coming soon...
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>

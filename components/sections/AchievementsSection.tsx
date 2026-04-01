@@ -1,5 +1,8 @@
 'use client'
 
+import { NoisePanel } from '@/components/visual/NoisePanel'
+import { SectionOrnament, TerminalSparkMark } from '@/components/visual/DecorIcons'
+
 const ACHIEVEMENTS = [
   'National finalist @ Smart India Hackathon 2025 (Hardware Edition) with NeuroSense — MoE / AICTE grand finale.',
   'Top 105 / 3,700+ teams @ Google Solution Challenge 2025 — led VoltSense (AI IoT anomaly detection).',
@@ -12,24 +15,36 @@ const ACHIEVEMENTS = [
 
 export default function AchievementsSection() {
   return (
-    <section className="relative w-full px-6 py-20 bg-background">
+    <section className="relative w-full overflow-hidden px-6 py-20 bg-background">
       <div className="mx-auto w-full max-w-3xl">
-        <h3 className="text-xl font-serif font-semibold tracking-tight fade-in-up mb-10">
-          highlights
-        </h3>
+        <SectionOrnament className="mb-10" />
 
-        <ul className="space-y-6">
-          {ACHIEVEMENTS.map((achievement, idx) => (
-            <li
-              key={idx}
-              className="fade-in-up flex gap-3 text-sm leading-relaxed text-foreground/80"
-              style={{ animationDelay: `${idx * 75}ms` }}
-            >
-              <span className="mt-0.5 flex-shrink-0 font-semibold text-primary">•</span>
-              <span className="min-w-0">{achievement}</span>
-            </li>
-          ))}
-        </ul>
+        <div className="mb-10 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+          <h3 className="fade-in-up text-xl font-serif font-semibold tracking-tight">
+            highlights
+          </h3>
+          <div className="hidden opacity-80 sm:block">
+            <TerminalSparkMark className="h-12 w-40 text-foreground" />
+          </div>
+        </div>
+
+        <NoisePanel className="p-6 sm:p-8">
+          <ul className="space-y-6">
+            {ACHIEVEMENTS.map((achievement, idx) => (
+              <li
+                key={idx}
+                className="fade-in-up flex gap-4 text-sm leading-relaxed text-foreground/80"
+                style={{ animationDelay: `${idx * 75}ms` }}
+              >
+                <span
+                  className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500/40 ring-1 ring-emerald-400/20"
+                  aria-hidden
+                />
+                <span className="min-w-0">{achievement}</span>
+              </li>
+            ))}
+          </ul>
+        </NoisePanel>
       </div>
     </section>
   )

@@ -4,6 +4,7 @@ import {
   ActivityHeatmap,
   ActivityHeatmapPlaceholder,
 } from '@/components/sections/ActivityHeatmap'
+import { SectionOrnament } from '@/components/visual/DecorIcons'
 
 /** GitHub-like greens — match ActivityHeatmap legend */
 const intensityColors = [
@@ -33,7 +34,8 @@ export default async function ActivityGrid() {
   return (
     <section className="relative w-full px-6 py-20 bg-background">
       <div className="mx-auto w-full max-w-3xl">
-        <h3 className="text-xl font-serif font-semibold tracking-tight fade-in-up mb-3">
+        <SectionOrnament className="mb-8" />
+        <h3 className="mb-3 text-xl font-serif font-semibold tracking-tight fade-in-up">
           activity
         </h3>
         {!data ? (
@@ -57,7 +59,8 @@ export default async function ActivityGrid() {
               <> over the {data.periodLabel}</>
             ) : (
               <> in {data.periodLabel}</>
-            )}{' '}
+            )}
+            . graph scales to fit width ·{' '}
             <Link
               href={`https://github.com/${data.login}`}
               className="text-foreground/60 hover:text-foreground transition-colors"
@@ -67,7 +70,7 @@ export default async function ActivityGrid() {
           </p>
         )}
 
-        <div className="fade-in-up w-full rounded-sm border border-border/20 bg-muted/5 p-5 sm:p-6">
+        <div className="noise-panel fade-in-up relative w-full rounded-sm border border-border/20 bg-muted/5 p-5 sm:p-6">
           {data?.weeks?.length ? (
             <ActivityHeatmap weeks={data.weeks} />
           ) : (

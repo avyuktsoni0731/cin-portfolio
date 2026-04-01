@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { SectionOrnament } from '@/components/visual/DecorIcons'
 
 const GITHUB_USER = 'avyuktsoni0731'
 const AVATAR_SRC = `https://github.com/${GITHUB_USER}.png`
@@ -108,6 +109,8 @@ export function AboutStory() {
             </p>
           </div>
         </header>
+
+        <SectionOrnament className="mb-16" />
 
         {/* Pull quote */}
         <figure className="my-16 border-y border-border/25 py-10">
