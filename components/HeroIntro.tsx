@@ -2,7 +2,7 @@ export default function HeroIntro() {
   return (
     <div className="text-center max-w-xl mx-auto fade-in">
       <h1
-        className="font-serif text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-foreground lowercase"
+        className="font-serif text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-balance text-foreground lowercase"
         style={{
           textShadow:
             '0 1px 2px rgba(0,0,0,0.6), 0 4px 24px rgba(0,0,0,0.45), 0 0 40px rgba(0,0,0,0.35)',
@@ -18,7 +18,7 @@ export default function HeroIntro() {
           href="https://www.instagram.com/avyukt_builds/"
           target="_blank"
           rel="noopener noreferrer"
-          className="underline decoration-border/50 underline-offset-2 transition-colors hover:text-foreground/75"
+          className="decoration-border/50 transition-colors hover:text-foreground/75"
         >
           @avyukt_builds
         </a>{' '}

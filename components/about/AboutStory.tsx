@@ -38,7 +38,7 @@ export function AboutStory() {
   const reelId = process.env.NEXT_PUBLIC_HERO_YOUTUBE_VIDEO_ID
 
   return (
-    <article className="relative overflow-hidden">
+    <article className="relative min-h-screen overflow-hidden bg-background/85 backdrop-blur-[1px]">
       <div
         className="pointer-events-none absolute inset-x-0 top-0 h-[42rem] opacity-30"
         style={{
