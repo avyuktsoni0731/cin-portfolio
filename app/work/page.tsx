@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 export default function WorkPage() {
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen">
       <NavHeader />
       <section className="relative w-full overflow-hidden px-6 pb-24 pt-28">
         <div className="mx-auto w-full max-w-3xl">

@@ -16,7 +16,7 @@ export default function WorkSection() {
   return (
     <section
       id="work"
-      className="relative w-full overflow-hidden py-24 px-6 bg-background"
+      className="relative w-full overflow-hidden bg-background/88 py-24 px-6 backdrop-blur-[2px]"
     >
       <div className="relative mx-auto max-w-3xl">
         <SectionOrnament className="mb-12" />

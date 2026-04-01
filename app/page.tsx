@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <AmbientVideoProvider>
-      <main className="min-h-screen bg-background">
+      <main className="min-h-screen">
         <NavHeader />
         <HeroSection />
         <SoundToggle />

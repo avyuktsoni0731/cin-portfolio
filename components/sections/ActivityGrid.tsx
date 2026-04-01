@@ -32,7 +32,7 @@ export default async function ActivityGrid() {
   const data = await getGithubContributionCalendar()
 
   return (
-    <section className="relative w-full px-6 py-20 bg-background">
+    <section className="relative w-full bg-background/88 px-6 py-20 backdrop-blur-[2px]">
       <div className="mx-auto w-full max-w-3xl">
         <SectionOrnament className="mb-8" />
         <h3 className="mb-3 text-xl font-serif font-semibold tracking-tight fade-in-up">

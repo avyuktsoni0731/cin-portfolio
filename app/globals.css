@@ -120,8 +120,28 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    @apply scroll-smooth;
+  }
+
+  html.dark {
+    background-color: oklch(0.055 0.01 280);
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-transparent text-foreground antialiased;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    .fade-in,
+    .fade-in-up {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif;

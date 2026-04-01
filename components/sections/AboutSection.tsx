@@ -8,7 +8,7 @@ export default function AboutSection() {
   return (
     <section
       id="about"
-      className="relative w-full overflow-hidden py-20 px-6 bg-background"
+      className="relative w-full overflow-hidden bg-background/88 py-20 px-6 backdrop-blur-[2px]"
     >
       <div
         className="pointer-events-none absolute -right-16 top-24 hidden h-72 w-72 opacity-[0.06] lg:block"

@@ -3,6 +3,7 @@ import type { ReactNode } from 'react'
 import { Geist, Geist_Mono, Crimson_Text } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { getSiteUrl } from '@/lib/site'
+import { SiteAtmosphere } from '@/components/SiteAtmosphere'
 import './globals.css'
 
 const _geist = Geist({ subsets: ['latin'] })
@@ -85,10 +86,11 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <body
-        className={`${_geist.className} ${_geistMono.className} ${_crimsonText.variable} font-sans antialiased`}
+        className={`${_geist.className} ${_geistMono.className} ${_crimsonText.variable} font-sans antialiased selection:bg-emerald-500/25 selection:text-foreground`}
         suppressHydrationWarning
       >
-        {children}
+        <SiteAtmosphere />
+        <div className="relative z-10">{children}</div>
         <Analytics />
       </body>
     </html>
