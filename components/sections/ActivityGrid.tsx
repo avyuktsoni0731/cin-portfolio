@@ -60,7 +60,7 @@ export default async function ActivityGrid() {
             ) : (
               <> in {data.periodLabel}</>
             )}
-            . graph scales to fit width ·{' '}
+            . {' '}
             <Link
               href={`https://github.com/${data.login}`}
               className="text-foreground/60 hover:text-foreground transition-colors"

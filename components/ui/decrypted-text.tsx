@@ -1,16 +1,31 @@
 'use client'
 
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 
 import { cn } from '@/lib/utils'
 
-function graphemes(s: string): string[] {
+function graphemes(s: string, locale = 'und'): string[] {
   if (typeof Intl !== 'undefined' && 'Segmenter' in Intl) {
     return [
-      ...new Intl.Segmenter('und', { granularity: 'grapheme' }).segment(s),
+      ...new Intl.Segmenter(locale, { granularity: 'grapheme' }).segment(s),
     ].map((seg) => seg.segment)
   }
   return Array.from(s)
+}
+
+function randomGraphemeString(
+  template: string,
+  scrambleChars: string,
+  locale: string,
+): string {
+  return graphemes(template, locale)
+    .map((ch) => {
+      if (ch === ' ' || ch === '\u00A0') return '\u00A0'
+      return scrambleChars[
+        Math.floor(Math.random() * scrambleChars.length)
+      ]!
+    })
+    .join('')
 }
 
 const DEFAULT_SCRAMBLE =
@@ -19,17 +34,17 @@ const DEFAULT_SCRAMBLE =
 export type DecryptedTextProps = {
   text: string
   className?: string
-  /** Characters shown while each slot is still “locking in”. */
   scrambleChars?: string
-  /** How long (ms) each character scrambles before it settles on the target. */
   lockMs?: number
-  /** Delay (ms) between each character starting its scramble. */
   staggerMs?: number
-  /**
-   * First paint shows the final string immediately (no decrypt on mount).
-   * Later `text` changes still animate.
-   */
   skipInitial?: boolean
+  /** Locale for grapheme segmentation (e.g. `ur`, `hi`, `en`). */
+  segmentLocale?: string
+  /**
+   * Per-grapheme reveal. Set `false` for Arabic script so joining isn’t broken
+   * by one span per letter (Urdu uses whole-line scramble instead).
+   */
+  split?: boolean
 }
 
 export function DecryptedText({
@@ -39,12 +54,48 @@ export function DecryptedText({
   lockMs = 380,
   staggerMs = 32,
   skipInitial = true,
+  segmentLocale = 'und',
+  split = true,
 }: DecryptedTextProps) {
-  const parts = useMemo(() => graphemes(text), [text])
+  const locale = segmentLocale
+  const parts = useMemo(() => graphemes(text, locale), [text, locale])
   const [display, setDisplay] = useState<string[]>(() => [...parts])
+  const [lineDisplay, setLineDisplay] = useState('')
   const initialSkipRef = useRef(skipInitial)
 
+  useLayoutEffect(() => {
+    if (!split) {
+      setLineDisplay('')
+    }
+  }, [text, split])
+
   useEffect(() => {
+    if (!split) {
+      if (initialSkipRef.current) {
+        initialSkipRef.current = false
+        setLineDisplay(text)
+        return
+      }
+
+      setLineDisplay(randomGraphemeString(text, scrambleChars, locale))
+
+      let raf = 0
+      const start = performance.now()
+
+      const tick = (now: number) => {
+        const t = now - start
+        if (t >= lockMs) {
+          setLineDisplay(text)
+          return
+        }
+        setLineDisplay(randomGraphemeString(text, scrambleChars, locale))
+        raf = requestAnimationFrame(tick)
+      }
+
+      raf = requestAnimationFrame(tick)
+      return () => cancelAnimationFrame(raf)
+    }
+
     if (initialSkipRef.current) {
       initialSkipRef.current = false
       setDisplay([...parts])
@@ -83,7 +134,15 @@ export function DecryptedText({
 
     raf = requestAnimationFrame(tick)
     return () => cancelAnimationFrame(raf)
-  }, [text, parts, scrambleChars, lockMs, staggerMs])
+  }, [text, parts, scrambleChars, lockMs, staggerMs, split, locale])
+
+  if (!split) {
+    return (
+      <span className={cn('inline-block', className)} aria-hidden>
+        {lineDisplay || text}
+      </span>
+    )
+  }
 
   return (
     <span className={cn('inline-block', className)} aria-hidden>
