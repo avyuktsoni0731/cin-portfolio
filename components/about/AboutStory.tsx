@@ -30,7 +30,7 @@ function SectionTitle({
 
 function Prose({ children }: { children: ReactNode }) {
   return (
-    <div className="space-y-5 text-sm leading-[1.75] text-muted-foreground">{children}</div>
+    <div className="space-y-5 text-sm leading-[1.75] text-foreground/75">{children}</div>
   )
 }
 
@@ -56,23 +56,23 @@ export function AboutStory() {
           <h1 className="font-serif text-4xl font-semibold leading-[1.1] tracking-tight md:text-5xl">
             i build systems that still make sense at 2am.
           </h1>
-          <div className="max-w-2xl space-y-5 text-base leading-relaxed text-muted-foreground md:text-lg">
+          <div className="max-w-2xl space-y-5 text-base leading-relaxed text-foreground/75 md:text-lg">
             <p>
               i&apos;m{' '}
-              <span className="text-foreground">avyukt</span> —{' '}
+              <span className="text-foreground">avyukt</span> — pursuing{' '}
               <span className="text-foreground">
                 computer engineering
               </span>{' '}
-              at <span className="text-foreground">AMU (ZHCET)</span>,{' '}
+              at <span className="text-foreground">AMU (ZHCET)</span>, in{' '}
               <span className="text-foreground">pre-final year</span>. i work
-              full-stack at a startup (
+              as a senior full-stack dev at a startup (
               <Link
                 href="https://stickapp.club"
                 className="text-muted-foreground underline decoration-border underline-offset-4 transition-colors hover:text-foreground"
               >
                 stick
               </Link>
-              ), run my own company (
+              ), trying to build my own startup (
               <Link
                 href="https://www.continuumworks.app"
                 className="text-muted-foreground underline decoration-border underline-offset-4 transition-colors hover:text-foreground"
@@ -80,14 +80,10 @@ export function AboutStory() {
                 continuum
               </Link>
               ), ship apps, jump into hardware when the problem isn&apos;t only
-              software, and i&apos;m working toward an{' '}
-              <span className="text-foreground">
-                international conference paper
-              </span>{' '}
-              (voltSense / ieee impact line—still in motion).
+              software.
             </p>
             <p>
-              when a project needs it, i handle photography, editing, and
+              when a project needs it, i handle photography, videography, editing, and
               graphics myself. lately i&apos;ve been putting more of the build
               process on camera—short videos of the messy middle live on{' '}
               <a
@@ -103,9 +99,7 @@ export function AboutStory() {
             <p>
               my founder thinks i&apos;m self-obsessed. i&apos;m choosing to read
               that as alignment on narrative. the rest of my time still goes to
-              mobile + backend, agents, pr automation, and hardware spikes—esp32,
-              wearables, iot—anything where i can&apos;t sleep until the signal
-              path makes sense.
+              anything where i can&apos;t sleep until the signal path makes sense.
             </p>
           </div>
         </header>
@@ -114,7 +108,7 @@ export function AboutStory() {
 
         {/* Pull quote */}
         <figure className="my-16 border-y border-border/25 py-10">
-          <blockquote className="font-serif text-xl italic leading-snug text-muted-foreground md:text-2xl">
+          <blockquote className="font-serif text-xl italic leading-snug text-foreground md:text-2xl">
             &ldquo;the best feeling isn&apos;t when it demos—it&apos;s when it
             survives contact with reality.&rdquo;
           </blockquote>
@@ -124,16 +118,16 @@ export function AboutStory() {
         <div className="mb-20 grid gap-10 md:grid-cols-[minmax(0,1fr)_200px] md:items-start">
           <Prose>
             <p>
-              i&apos;ve always learned by taking hardware apart and putting it
-              back together—that turned into arduino builds and, later, the same
-              instinct applied to backends and deploys: make the signal path
-              obvious, then make it reliable.
+              after messing with games, the next thing that made sense was stuff i
+              could hold—kits, sensors, a breadboard. i wasn&apos;t chasing a
+              title; i wanted to see what happened if i changed one link in the
+              chain and watched the rest react.
             </p>
             <p>
-              hackathons became the default rhythm: ship something real by the
-              deadline, learn what breaks, repeat. the big annual events in my
-              city were already running long before i showed up—i wasn&apos;t
-              the one who built that machine; i just learned to live inside it.
+              software turned out to be the same job with a longer chain: when
+              something breaks, you walk backward until the story stops making
+              sense—then you fix that spot. the only difference is you can&apos;t
+              always see the wires.
             </p>
           </Prose>
           <figure className="mx-auto w-full max-w-[200px] md:mx-0 md:max-w-none">
@@ -154,21 +148,23 @@ export function AboutStory() {
           </figure>
         </div>
 
-        <SectionTitle kicker="01">high school → the hackathon gravity well</SectionTitle>
+        <SectionTitle kicker="01">where the clock actually mattered</SectionTitle>
         <Prose>
           <p>
-            i found hackathons the way some people find sports: loud rooms,
-            impossible deadlines, strangers who became teammates overnight. the
-            rule was simple—ship something by sunday. i started hitting every
-            event i could reach—including the ones that pack a few hundred people
-            into a hall that had been doing that for years before i arrived.
-            robots, ar, tools that shouldn&apos;t have worked but did.
+            i wasn&apos;t the kid who lived in hackathon halls in high school—that
+            wasn&apos;t my story. the version of building that comes with a real
+            deadline and a team you can&apos;t fully choose hit me later, mostly
+            after i was already in college: competitions, student orgs, and events
+            where you can&apos;t hide behind a solo side project.
           </p>
           <p>
-            that&apos;s when it clicked: i didn&apos;t only want to build{' '}
-            <em className="text-foreground not-italic">things</em>. i wanted
-            to build <em className="text-foreground not-italic">rooms</em>{' '}
-            where other people could build too.
+            what stuck wasn&apos;t the line on a certificate—it was learning to
+            work with people who don&apos;t owe you patience, and caring whether
+            the thing still runs when the demo ends. i didn&apos;t only want to
+            build <em className="text-foreground not-italic">things</em>—i
+            wanted to be in rooms where other people could build too. the next
+            sections are the concrete versions of that—names, roles, and what
+            actually shipped.
           </p>
         </Prose>
 

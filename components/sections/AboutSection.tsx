@@ -37,24 +37,24 @@ export default function AboutSection() {
 
             <div className="space-y-4 text-sm leading-relaxed text-muted-foreground">
               <p>
-                i&apos;m a builder and hacker obsessed with creating systems that
-                work. since childhood, i&apos;ve been taking things apart and
-                putting them back together — from circuit boards to distributed
-                systems. i discovered hackathons in high school and haven&apos;t
-                stopped building since.
+                i&apos;m avyukt. when i was a kid i used to change games with tools
+                that weren&apos;t really meant for me—just to see if i could make
+                the world behave the way i imagined. that turned out to be a habit:
+                take something apart, learn the rules, then decide which rules are
+                worth keeping.
               </p>
 
               <p>
-                now i work at the intersection of real-time data, developer
-                tools, and infrastructure. i love the challenge of making
-                complex systems simple, and creating infrastructure that
-                disappears into the background so developers can focus on what
-                matters.
+                college gave that habit a name. most days it&apos;s not
+                glamorous—it&apos;s debugging, rewriting, being wrong in public,
+                and learning from people who are sharper than me. i&apos;m not
+                trying to sound impressive on this page; i&apos;m trying to sound
+                accurate.
               </p>
 
               <p>
-                outside of code: cameras, edits, the occasional hardware sprint,
-                and the kind of problems that only show up at 2am.
+                the work itself—what i&apos;ve built, where, with who—is listed
+                elsewhere so this doesn&apos;t turn into a brochure.
               </p>
             </div>
 
