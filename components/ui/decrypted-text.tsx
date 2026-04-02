@@ -29,7 +29,7 @@ function randomGraphemeString(
 }
 
 const DEFAULT_SCRAMBLE =
-  'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+  'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()[]{}|;:,.<>?/~`-=+_'
 
 export type DecryptedTextProps = {
   text: string
