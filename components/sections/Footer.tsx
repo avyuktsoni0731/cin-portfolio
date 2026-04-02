@@ -4,7 +4,7 @@ import { SectionOrnament } from '@/components/visual/DecorIcons'
 
 export default function Footer() {
   return (
-    <footer className="relative w-full border-t border-border/20 bg-background/85 py-16 px-6 backdrop-blur-sm">
+    <footer className="relative w-full bg-background py-16 px-6">
       <div className="max-w-5xl mx-auto">
         <SectionOrnament className="mb-10 max-w-xs mx-auto opacity-60" />
         <div className="flex flex-col md:flex-row items-center justify-center gap-8 mb-12 fade-in-up">

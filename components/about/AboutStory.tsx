@@ -38,12 +38,12 @@ export function AboutStory() {
   const reelId = process.env.NEXT_PUBLIC_HERO_YOUTUBE_VIDEO_ID
 
   return (
-    <article className="relative min-h-screen overflow-hidden bg-background/85 backdrop-blur-[1px]">
+    <article className="relative min-h-screen overflow-hidden bg-background/80 backdrop-blur-[2px]">
       <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-[42rem] opacity-30"
+        className="pointer-events-none absolute inset-x-0 top-0 h-[42rem] opacity-[0.22]"
         style={{
           background:
-            'radial-gradient(ellipse 80% 50% at 50% -20%, rgba(80,60,120,0.35), transparent), radial-gradient(ellipse 60% 40% at 100% 0%, rgba(40,80,100,0.2), transparent)',
+            'radial-gradient(ellipse 80% 50% at 50% -20%, rgba(80,60,120,0.22), transparent), radial-gradient(ellipse 60% 40% at 100% 0%, rgba(40,80,100,0.12), transparent)',
         }}
       />
 

@@ -2,7 +2,7 @@
 
 export default function NavHeader() {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 border-b border-border/25 bg-background/75 backdrop-blur-md">
+    <header className="fixed top-0 left-0 right-0 z-50">
       <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
         <a
           href="/"
@@ -11,11 +11,11 @@ export default function NavHeader() {
           avyukt soni
         </a>
 
-        <ul className="flex gap-8 text-sm text-muted-foreground">
+        <ul className="flex gap-8 text-sm text-foreground">
           <li>
             <a
               href="/about"
-              className="transition-colors hover:text-foreground"
+              className="transition-colors hover:opacity-80"
             >
               about
             </a>
@@ -23,7 +23,7 @@ export default function NavHeader() {
           <li>
             <a
               href="/work"
-              className="transition-colors hover:text-foreground"
+              className="transition-colors hover:opacity-80"
             >
               work
             </a>
