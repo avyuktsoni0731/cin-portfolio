@@ -55,10 +55,10 @@ export default function ThoughtsSection() {
                   className="fade-in-up border-l border-border/35 py-2 pl-6"
                   style={{ animationDelay: `${idx * 100}ms` }}
                 >
-                  <p className="mb-2 font-mono text-xs text-muted-foreground">
+                  <p className="mb-2 font-mono text-xs text-foreground/75">
                     {thought.date}
                   </p>
-                  <p className="text-sm leading-relaxed text-muted-foreground">
+                  <p className="text-sm leading-relaxed text-foreground/75">
                     {thought.entry}
                   </p>
                 </div>

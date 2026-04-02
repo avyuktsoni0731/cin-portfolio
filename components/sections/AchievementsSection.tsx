@@ -33,7 +33,7 @@ export default function AchievementsSection() {
             {ACHIEVEMENTS.map((achievement, idx) => (
               <li
                 key={idx}
-                className="fade-in-up flex gap-4 text-sm leading-relaxed text-muted-foreground"
+                className="fade-in-up flex gap-4 text-sm leading-relaxed text-foreground/75"
                 style={{ animationDelay: `${idx * 75}ms` }}
               >
                 <span

@@ -35,7 +35,7 @@ export default function AboutSection() {
               about me
             </h2>
 
-            <div className="space-y-4 text-sm leading-relaxed text-muted-foreground">
+            <div className="space-y-4 text-sm leading-relaxed text-foreground/75">
               <p>
                 i&apos;m avyukt. when i was a kid i used to change games with tools
                 that weren&apos;t really meant for me—just to see if i could make
@@ -61,7 +61,7 @@ export default function AboutSection() {
             <div className="pt-2">
               <Link
                 href="/about"
-                className="inline-flex items-center gap-2 text-xs text-muted-foreground transition-colors hover:text-foreground"
+                className="inline-flex items-center gap-2 text-xs text-foreground/75 transition-colors hover:opacity-80"
               >
                 read my full story →
               </Link>

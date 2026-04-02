@@ -27,7 +27,7 @@ export default function WorkSection() {
           </h2>
           <NoisePanel className="px-4 py-3 sm:max-w-[200px]">
             <StackLayersMark className="h-10 w-full text-muted-foreground/50" />
-            <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground">
+            <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground/75">
               stacks & experiments
             </p>
           </NoisePanel>
@@ -39,7 +39,7 @@ export default function WorkSection() {
           <div className="fade-in-up mt-14 border-t border-border/20 pt-10">
             <Link
               href="/work"
-              className="inline-flex items-center gap-2 font-mono text-sm text-muted-foreground transition-colors hover:text-foreground"
+              className="inline-flex items-center gap-2 font-mono text-sm text-foreground/75 transition-colors hover:opacity-80"
             >
               <span>
                 +{moreCount} more project{moreCount === 1 ? '' : 's'} on the full
