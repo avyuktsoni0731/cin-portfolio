@@ -8,13 +8,13 @@ export default function AboutSection() {
   return (
     <section
       id="about"
-      className="relative w-full overflow-hidden bg-background/88 py-20 px-6 backdrop-blur-[2px]"
+      className="relative w-full overflow-hidden bg-background/80 py-24 px-6 backdrop-blur-[3px]"
     >
       <div
         className="pointer-events-none absolute -right-16 top-24 hidden h-72 w-72 opacity-[0.06] lg:block"
         aria-hidden
       >
-        <SproutMark className="h-full w-full text-foreground" />
+        <SproutMark className="h-full w-full text-muted-foreground/40" />
       </div>
 
       <div className="relative mx-auto max-w-3xl">
@@ -24,7 +24,7 @@ export default function AboutSection() {
           <div className="mx-auto flex shrink-0 md:mx-0 md:w-36 md:flex-col md:items-center">
             <NoisePanel className="p-5">
               <SproutMark className="mx-auto h-24 w-24 md:h-28 md:w-28" />
-              <p className="mt-4 text-center font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/35">
+              <p className="mt-4 text-center font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
                 build → ship → learn
               </p>
             </NoisePanel>
@@ -35,7 +35,7 @@ export default function AboutSection() {
               about me
             </h2>
 
-            <div className="space-y-4 text-sm leading-relaxed text-foreground/85">
+            <div className="space-y-4 text-sm leading-relaxed text-muted-foreground">
               <p>
                 i&apos;m a builder and hacker obsessed with creating systems that
                 work. since childhood, i&apos;ve been taking things apart and
@@ -61,7 +61,7 @@ export default function AboutSection() {
             <div className="pt-2">
               <Link
                 href="/about"
-                className="inline-flex items-center gap-2 text-xs text-foreground/70 transition-colors hover:text-foreground"
+                className="inline-flex items-center gap-2 text-xs text-muted-foreground transition-colors hover:text-foreground"
               >
                 read my full story →
               </Link>

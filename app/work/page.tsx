@@ -18,10 +18,10 @@ export default function WorkPage() {
   return (
     <main className="min-h-screen">
       <NavHeader />
-      <section className="relative w-full overflow-hidden px-6 pb-24 pt-28">
+      <section className="relative w-full overflow-hidden px-6 pb-28 pt-28">
         <div className="mx-auto w-full max-w-3xl">
-          <p className="fade-in-up mb-2 font-mono text-xs text-foreground/45">
-            <Link href="/" className="hover:text-foreground/70 transition-colors">
+          <p className="fade-in-up mb-2 font-mono text-xs text-muted-foreground">
+            <Link href="/" className="transition-colors hover:text-foreground">
               ← home
             </Link>
           </p>
@@ -31,14 +31,14 @@ export default function WorkPage() {
               <h1 className="fade-in-up mb-3 text-4xl font-serif font-semibold tracking-tight">
                 work
               </h1>
-              <p className="fade-in-up max-w-lg text-sm leading-relaxed text-foreground/50">
+              <p className="fade-in-up max-w-lg text-sm leading-relaxed text-muted-foreground">
                 everything in one place—ship logs, experiments, and things that
                 only made sense after a deadline.
               </p>
             </div>
             <NoisePanel className="hidden shrink-0 p-4 sm:block sm:w-[min(100%,220px)]">
-              <StackLayersMark className="h-12 w-full text-foreground" />
-              <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.15em] text-foreground/35">
+              <StackLayersMark className="h-12 w-full text-muted-foreground/50" />
+              <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground">
                 catalogue
               </p>
             </NoisePanel>

@@ -17,7 +17,7 @@ function SectionTitle({
   return (
     <div className="mb-8">
       {kicker ? (
-        <p className="mb-2 font-mono text-[11px] uppercase tracking-[0.2em] text-foreground/40">
+        <p className="mb-2 font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
           {kicker}
         </p>
       ) : null}
@@ -30,7 +30,7 @@ function SectionTitle({
 
 function Prose({ children }: { children: ReactNode }) {
   return (
-    <div className="space-y-5 text-sm leading-[1.75] text-foreground/85">{children}</div>
+    <div className="space-y-5 text-sm leading-[1.75] text-muted-foreground">{children}</div>
   )
 }
 
@@ -50,38 +50,38 @@ export function AboutStory() {
       <div className="relative mx-auto max-w-3xl px-6 pb-28 pt-28 md:pt-32">
         {/* Hero */}
         <header className="mb-20 space-y-6">
-          <p className="font-mono text-xs tracking-wide text-foreground/45">
+          <p className="font-mono text-xs tracking-wide text-muted-foreground">
             about · the longer version
           </p>
           <h1 className="font-serif text-4xl font-semibold leading-[1.1] tracking-tight md:text-5xl">
             i build systems that still make sense at 2am.
           </h1>
-          <div className="max-w-2xl space-y-5 text-base leading-relaxed text-foreground/70 md:text-lg">
+          <div className="max-w-2xl space-y-5 text-base leading-relaxed text-muted-foreground md:text-lg">
             <p>
               i&apos;m{' '}
-              <span className="text-foreground/90">avyukt</span> —{' '}
-              <span className="text-foreground/90">
+              <span className="text-foreground">avyukt</span> —{' '}
+              <span className="text-foreground">
                 computer engineering
               </span>{' '}
-              at <span className="text-foreground/90">AMU (ZHCET)</span>,{' '}
-              <span className="text-foreground/90">pre-final year</span>. i work
+              at <span className="text-foreground">AMU (ZHCET)</span>,{' '}
+              <span className="text-foreground">pre-final year</span>. i work
               full-stack at a startup (
               <Link
                 href="https://stickapp.club"
-                className="text-foreground/85 underline decoration-border underline-offset-4 transition-colors hover:text-foreground"
+                className="text-muted-foreground underline decoration-border underline-offset-4 transition-colors hover:text-foreground"
               >
                 stick
               </Link>
               ), run my own company (
               <Link
                 href="https://www.continuumworks.app"
-                className="text-foreground/85 underline decoration-border underline-offset-4 transition-colors hover:text-foreground"
+                className="text-muted-foreground underline decoration-border underline-offset-4 transition-colors hover:text-foreground"
               >
                 continuum
               </Link>
               ), ship apps, jump into hardware when the problem isn&apos;t only
               software, and i&apos;m working toward an{' '}
-              <span className="text-foreground/90">
+              <span className="text-foreground">
                 international conference paper
               </span>{' '}
               (voltSense / ieee impact line—still in motion).
@@ -94,7 +94,7 @@ export function AboutStory() {
                 href={INSTAGRAM_BUILDS}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-mono text-foreground/85 underline decoration-border underline-offset-4 transition-colors hover:text-foreground"
+                className="font-mono text-muted-foreground underline decoration-border underline-offset-4 transition-colors hover:text-foreground"
               >
                 @avyukt_builds
               </a>{' '}
@@ -114,7 +114,7 @@ export function AboutStory() {
 
         {/* Pull quote */}
         <figure className="my-16 border-y border-border/25 py-10">
-          <blockquote className="font-serif text-xl italic leading-snug text-foreground/80 md:text-2xl">
+          <blockquote className="font-serif text-xl italic leading-snug text-muted-foreground md:text-2xl">
             &ldquo;the best feeling isn&apos;t when it demos—it&apos;s when it
             survives contact with reality.&rdquo;
           </blockquote>
@@ -148,7 +148,7 @@ export function AboutStory() {
                 priority
               />
             </div>
-            <figcaption className="mt-3 font-mono text-[11px] leading-relaxed text-foreground/45">
+            <figcaption className="mt-3 font-mono text-[11px] leading-relaxed text-muted-foreground">
               github.com/{GITHUB_USER}
             </figcaption>
           </figure>
@@ -166,8 +166,8 @@ export function AboutStory() {
           </p>
           <p>
             that&apos;s when it clicked: i didn&apos;t only want to build{' '}
-            <em className="text-foreground/90 not-italic">things</em>. i wanted
-            to build <em className="text-foreground/90 not-italic">rooms</em>{' '}
+            <em className="text-foreground not-italic">things</em>. i wanted
+            to build <em className="text-foreground not-italic">rooms</em>{' '}
             where other people could build too.
           </p>
         </Prose>
@@ -181,10 +181,10 @@ export function AboutStory() {
             { label: 'bmw challenge', detail: 'Amulate · Continuum.ai' },
           ].map((s) => (
             <div key={s.label} className="space-y-1">
-              <p className="font-mono text-[10px] uppercase tracking-wider text-foreground/40">
+              <p className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
                 {s.label}
               </p>
-              <p className="text-xs leading-snug text-foreground/70">{s.detail}</p>
+              <p className="text-xs leading-snug text-muted-foreground">{s.detail}</p>
             </div>
           ))}
         </div>
@@ -198,11 +198,11 @@ export function AboutStory() {
           </p>
           <p>
             as{' '}
-            <strong className="font-medium text-foreground/90">
+            <strong className="font-medium text-foreground">
               web &amp; tech lead
             </strong>{' '}
             at{' '}
-            <strong className="font-medium text-foreground/90">
+            <strong className="font-medium text-foreground">
               google developer groups on campus (ZHCET)
             </strong>
             , i led ~13 people across three full-stack builds, mentored
@@ -215,42 +215,42 @@ export function AboutStory() {
             </Link>{' '}
             (same track that&apos;s headed toward an ieee-venue paper on smart
             energy / anomaly detection) to the{' '}
-            <strong className="font-medium text-foreground/90">
+            <strong className="font-medium text-foreground">
               top 105 of 3,700+
             </strong>{' '}
             in the{' '}
-            <strong className="font-medium text-foreground/90">
+            <strong className="font-medium text-foreground">
               google solution challenge 2025
             </strong>
             . later i stayed on as a mentor.
           </p>
           <p>
             with{' '}
-            <strong className="font-medium text-foreground/90">AMURoboclub</strong>{' '}
+            <strong className="font-medium text-foreground">AMURoboclub</strong>{' '}
             as joint coordinator, i mentored teams for{' '}
-            <strong className="font-medium text-foreground/90">
+            <strong className="font-medium text-foreground">
               TechnoXian 9.0
             </strong>
             , wrote flight and ground software for an{' '}
-            <strong className="font-medium text-foreground/90">
+            <strong className="font-medium text-foreground">
               IN-SPACe CANSAT
             </strong>{' '}
             mission (ASI), and shipped a{' '}
-            <strong className="font-medium text-foreground/90">Next.js</strong>{' '}
+            <strong className="font-medium text-foreground">Next.js</strong>{' '}
             +{' '}
-            <strong className="font-medium text-foreground/90">PocketBase</strong>{' '}
+            <strong className="font-medium text-foreground">PocketBase</strong>{' '}
             registration stack for{' '}
-            <strong className="font-medium text-foreground/90">Vercera 4.0</strong>{' '}
+            <strong className="font-medium text-foreground">Vercera 4.0</strong>{' '}
             (200+ signups).
           </p>
           <p>
-            <strong className="font-medium text-foreground/90">IEEE</strong> —
+            <strong className="font-medium text-foreground">IEEE</strong> —
             head of web operations,{' '}
-            <strong className="font-medium text-foreground/90">
+            <strong className="font-medium text-foreground">
               Code-o-Fiesta 3.0
             </strong>
             , technical org for{' '}
-            <strong className="font-medium text-foreground/90">
+            <strong className="font-medium text-foreground">
               AMUROVc 3.0
             </strong>
             .
@@ -261,10 +261,10 @@ export function AboutStory() {
         <div className="my-16 rounded-sm border border-border/30 bg-gradient-to-br from-muted/10 to-transparent p-6 md:p-8">
           <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
             <div>
-              <p className="mb-2 font-mono text-xs text-foreground/45">
+              <p className="mb-2 font-mono text-xs text-muted-foreground">
                 public graph
               </p>
-              <p className="font-serif text-lg text-foreground/90">
+              <p className="font-serif text-lg text-foreground">
                 code, issues, and experiments live on github—most of my
                 portfolio is there before it&apos;s here.
               </p>
@@ -273,7 +273,7 @@ export function AboutStory() {
               href={`https://github.com/${GITHUB_USER}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex shrink-0 items-center justify-center rounded-sm border border-border/40 bg-background/60 px-5 py-3 font-mono text-sm text-foreground/80 transition-colors hover:border-border hover:bg-muted/20 hover:text-foreground"
+              className="inline-flex shrink-0 items-center justify-center rounded-sm border border-border/40 bg-background/60 px-5 py-3 font-mono text-sm text-muted-foreground transition-colors hover:border-border hover:bg-muted/20 hover:text-foreground"
             >
               @{GITHUB_USER} →
             </a>
@@ -284,10 +284,10 @@ export function AboutStory() {
         <div className="my-16 rounded-sm border border-border/30 bg-gradient-to-br from-muted/5 to-transparent p-6 md:p-8">
           <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
             <div>
-              <p className="mb-2 font-mono text-xs text-foreground/45">
+              <p className="mb-2 font-mono text-xs text-muted-foreground">
                 builds in motion
               </p>
-              <p className="font-serif text-lg text-foreground/90">
+              <p className="font-serif text-lg text-foreground">
                 the unpolished parts—solder smoke, failed runs, the one commit that
                 finally greened—usually end up as reels on instagram before they
                 end up here.
@@ -297,7 +297,7 @@ export function AboutStory() {
               href={INSTAGRAM_BUILDS}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex shrink-0 items-center justify-center rounded-sm border border-border/40 bg-background/60 px-5 py-3 font-mono text-sm text-foreground/80 transition-colors hover:border-border hover:bg-muted/20 hover:text-foreground"
+              className="inline-flex shrink-0 items-center justify-center rounded-sm border border-border/40 bg-background/60 px-5 py-3 font-mono text-sm text-muted-foreground transition-colors hover:border-border hover:bg-muted/20 hover:text-foreground"
             >
               @avyukt_builds →
             </a>
@@ -307,42 +307,42 @@ export function AboutStory() {
         <SectionTitle kicker="03">things i&apos;ve shipped (the short list)</SectionTitle>
         <Prose>
           <p>
-            <strong className="font-medium text-foreground/90">stick</strong> —
+            <strong className="font-medium text-foreground">stick</strong> —
             react native app (play beta), express backend end to end, docker on{' '}
-            <strong className="font-medium text-foreground/90">AWS EC2</strong>,
+            <strong className="font-medium text-foreground">AWS EC2</strong>,
             ci/cd, marketing site, keeping prod boring.
           </p>
           <p>
-            <strong className="font-medium text-foreground/90">continuum</strong>{' '}
+            <strong className="font-medium text-foreground">continuum</strong>{' '}
             — agentic workflows over slack:{' '}
-            <strong className="font-medium text-foreground/90">MCP</strong>,{' '}
-            <strong className="font-medium text-foreground/90">FastAPI</strong>,{' '}
+            <strong className="font-medium text-foreground">MCP</strong>,{' '}
+            <strong className="font-medium text-foreground">FastAPI</strong>,{' '}
             postgres, redis, celery, context across jira, github, calendar.
           </p>
           <p>
-            <strong className="font-medium text-foreground/90">commitlens</strong>{' '}
+            <strong className="font-medium text-foreground">commitlens</strong>{' '}
             — open-source pr review agent: webhooks, detectors, learning from
             human comments, claude summaries, slack.
           </p>
           <p>
-            <strong className="font-medium text-foreground/90">neurosense</strong>{' '}
+            <strong className="font-medium text-foreground">neurosense</strong>{' '}
             — wearable screening; esp32, fft, mediapipe + random forest,
             sub-100ms websockets.{' '}
-            <strong className="font-medium text-foreground/90">
+            <strong className="font-medium text-foreground">
               SIH 2025 national finalist
             </strong>
             .
           </p>
           <p>
-            <strong className="font-medium text-foreground/90">zenventures</strong>{' '}
+            <strong className="font-medium text-foreground">zenventures</strong>{' '}
             — lifequest balance winner; next.js, firebase, gemini—with shashank
             chauhan.
           </p>
-          <p className="text-foreground/55">
+          <p className="text-muted-foreground/90">
             more builds on the{' '}
             <Link
               href="/work"
-              className="underline underline-offset-2 hover:text-foreground/80"
+              className="underline underline-offset-2 transition-colors hover:text-foreground"
             >
               full work page
             </Link>
@@ -353,11 +353,11 @@ export function AboutStory() {
         {reelId ? (
           <div className="my-16 space-y-4">
             <SectionTitle kicker="motion">a reel, not a pitch</SectionTitle>
-            <p className="mb-4 text-sm text-foreground/55">
+            <p className="mb-4 text-sm text-muted-foreground/90">
               same piece as the home hero—mute by default; use the floating
               control if you want sound.
             </p>
-            <div className="aspect-video overflow-hidden rounded-sm border border-border/30 bg-black shadow-[0_0_0_1px_rgba(255,255,255,0.04)]">
+            <div className="aspect-video overflow-hidden rounded-sm border border-border/40 bg-muted ring-1 ring-border/30">
               <iframe
                 title="Portfolio reel"
                 className="h-full w-full border-0"
@@ -371,22 +371,22 @@ export function AboutStory() {
 
         {/* Principles — same three you had on the site before */}
         <div className="my-16 border border-border/30 bg-muted/[0.07] p-8 md:p-10">
-          <h3 className="mb-6 font-serif text-lg text-foreground/90">
+          <h3 className="mb-6 font-serif text-lg text-foreground">
             how i think about building
           </h3>
-          <div className="space-y-3 text-xs leading-relaxed text-foreground/75 md:text-sm">
+          <div className="space-y-3 text-xs leading-relaxed text-muted-foreground md:text-sm">
             <p>
-              <span className="text-foreground/90">systems over features.</span>{' '}
+              <span className="text-foreground">systems over features.</span>{' '}
               a well-designed system naturally produces good features. spend time
               on architecture, not decoration.
             </p>
             <p>
-              <span className="text-foreground/90">constraints breed creativity.</span>{' '}
+              <span className="text-foreground">constraints breed creativity.</span>{' '}
               the best work happens when you have limits. work within them, and
               you&apos;ll find elegant solutions.
             </p>
             <p>
-              <span className="text-foreground/90">ship early, iterate always.</span>{' '}
+              <span className="text-foreground">ship early, iterate always.</span>{' '}
               perfect is the enemy of done. get something working, learn,
               improve.
             </p>
@@ -395,7 +395,7 @@ export function AboutStory() {
 
         {/* Tech strip */}
         <div className="mb-16">
-          <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.2em] text-foreground/35">
+          <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
             tools i reach for
           </p>
           <div className="flex flex-wrap gap-2">
@@ -416,7 +416,7 @@ export function AboutStory() {
             ].map((t) => (
               <span
                 key={t}
-                className="rounded-sm border border-border/25 bg-background/40 px-2.5 py-1 font-mono text-[11px] text-foreground/55"
+                className="rounded-sm border border-border/25 bg-background/40 px-2.5 py-1 font-mono text-[11px] text-muted-foreground/90"
               >
                 {t}
               </span>
@@ -425,10 +425,10 @@ export function AboutStory() {
         </div>
 
         <div className="my-16 border border-dashed border-border/30 bg-muted/[0.04] p-6 md:p-8">
-          <p className="mb-2 font-mono text-[11px] uppercase tracking-[0.15em] text-foreground/35">
+          <p className="mb-2 font-mono text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
             fine print
           </p>
-          <p className="text-xs leading-relaxed text-foreground/55 md:text-sm">
+          <p className="text-xs leading-relaxed text-muted-foreground/90 md:text-sm">
             allergic to dust and pollen; breathing stuff that means i basically
             wake up and sleep with a cold most days. i compensate with probably
             too much coffee and diet coke. if i seem low-energy in a dusty room,
@@ -437,7 +437,7 @@ export function AboutStory() {
         </div>
 
         <footer className="border-t border-border/20 pt-12">
-          <p className="mb-6 text-sm leading-relaxed text-foreground/70">
+          <p className="mb-6 text-sm leading-relaxed text-muted-foreground">
             if you&apos;re building something stubbornly ambitious—infra,
             embedded, agents, or a weekend hack that refuses to die—say hi. i
             like people who finish their sentences with a working demo.
@@ -445,39 +445,39 @@ export function AboutStory() {
           <div className="flex flex-wrap gap-4 text-sm">
             <a
               href="mailto:soniavyukt@gmail.com"
-              className="text-foreground/80 underline decoration-border underline-offset-4 transition-colors hover:text-foreground"
+              className="text-muted-foreground underline decoration-border underline-offset-4 transition-colors hover:text-foreground"
             >
               soniavyukt@gmail.com
             </a>
-            <span className="text-foreground/25">·</span>
+            <span className="text-muted-foreground/40">·</span>
             <a
               href="https://linkedin.com/in/avyuktsoni0731"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-foreground/80 underline decoration-border underline-offset-4 transition-colors hover:text-foreground"
+              className="text-muted-foreground underline decoration-border underline-offset-4 transition-colors hover:text-foreground"
             >
               linkedin
             </a>
-            <span className="text-foreground/25">·</span>
+            <span className="text-muted-foreground/40">·</span>
             <a
               href={`https://github.com/${GITHUB_USER}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-foreground/80 underline decoration-border underline-offset-4 transition-colors hover:text-foreground"
+              className="text-muted-foreground underline decoration-border underline-offset-4 transition-colors hover:text-foreground"
             >
               github
             </a>
-            <span className="text-foreground/25">·</span>
+            <span className="text-muted-foreground/40">·</span>
             <a
               href={INSTAGRAM_BUILDS}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-foreground/80 underline decoration-border underline-offset-4 transition-colors hover:text-foreground"
+              className="text-muted-foreground underline decoration-border underline-offset-4 transition-colors hover:text-foreground"
             >
               instagram
             </a>
           </div>
-          <p className="mt-10 font-mono text-[11px] text-foreground/35">
+          <p className="mt-10 font-mono text-[11px] text-muted-foreground">
             last updated march 2026. always building. always learning.
           </p>
         </footer>

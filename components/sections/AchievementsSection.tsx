@@ -15,7 +15,7 @@ const ACHIEVEMENTS = [
 
 export default function AchievementsSection() {
   return (
-    <section className="relative w-full overflow-hidden bg-background/88 px-6 py-20 backdrop-blur-[2px]">
+    <section className="relative w-full overflow-hidden bg-background/80 px-6 py-24 backdrop-blur-[3px]">
       <div className="mx-auto w-full max-w-3xl">
         <SectionOrnament className="mb-10" />
 
@@ -23,8 +23,8 @@ export default function AchievementsSection() {
           <h3 className="fade-in-up text-xl font-serif font-semibold tracking-tight">
             highlights
           </h3>
-          <div className="hidden opacity-80 sm:block">
-            <TerminalSparkMark className="h-12 w-40 text-foreground" />
+          <div className="hidden opacity-70 sm:block">
+            <TerminalSparkMark className="h-12 w-40 text-muted-foreground/45" />
           </div>
         </div>
 
@@ -33,7 +33,7 @@ export default function AchievementsSection() {
             {ACHIEVEMENTS.map((achievement, idx) => (
               <li
                 key={idx}
-                className="fade-in-up flex gap-4 text-sm leading-relaxed text-foreground/80"
+                className="fade-in-up flex gap-4 text-sm leading-relaxed text-muted-foreground"
                 style={{ animationDelay: `${idx * 75}ms` }}
               >
                 <span

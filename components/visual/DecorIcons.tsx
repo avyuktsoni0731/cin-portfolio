@@ -15,14 +15,14 @@ export function SproutMark({ className }: { className?: string }) {
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="text-foreground/50"
+        className="text-muted-foreground/65"
       />
       <path
         d="M60 72V44M48 52c4-12 12-20 12-28M72 52c-4-12-12-20-12-28"
         stroke="currentColor"
         strokeWidth="1.25"
         strokeLinecap="round"
-        className="text-foreground/35"
+        className="text-muted-foreground/50"
       />
     </svg>
   )
@@ -41,19 +41,19 @@ export function StackLayersMark({ className }: { className?: string }) {
         d="M10 50 60 28l50 22-50 22L10 50Z"
         stroke="currentColor"
         strokeWidth="1.25"
-        className="text-foreground/40"
+        className="text-muted-foreground/55"
       />
       <path
         d="M10 38 60 16l50 22-50 22L10 38Z"
         stroke="currentColor"
         strokeWidth="1.25"
-        className="text-foreground/30"
+        className="text-muted-foreground/45"
       />
       <path
         d="M10 26 60 4l50 22-50 22L10 26Z"
         stroke="currentColor"
         strokeWidth="1.25"
-        className="text-foreground/22"
+        className="text-muted-foreground/35"
       />
     </svg>
   )
@@ -76,14 +76,14 @@ export function TerminalSparkMark({ className }: { className?: string }) {
         rx="4"
         stroke="currentColor"
         strokeWidth="1.25"
-        className="text-foreground/35"
+        className="text-muted-foreground/50"
       />
       <path
         d="M16 28h24M16 36h40M16 44h16"
         stroke="currentColor"
         strokeWidth="1.25"
         strokeLinecap="round"
-        className="text-foreground/25"
+        className="text-muted-foreground/40"
       />
       <path
         d="M88 36 96 44 108 28"
@@ -110,7 +110,7 @@ export function JournalSpineMark({ className }: { className?: string }) {
         d="M12 4h28v112H12V4Z"
         stroke="currentColor"
         strokeWidth="1.25"
-        className="text-foreground/30"
+        className="text-muted-foreground/45"
       />
       {[24, 44, 64, 84].map((y) => (
         <path
@@ -132,7 +132,7 @@ export function SectionOrnament({ className }: { className?: string }) {
       aria-hidden
     >
       <span className="h-px flex-1 bg-gradient-to-r from-transparent to-border/60" />
-      <span className="font-mono text-[10px] text-foreground/25">◆</span>
+      <span className="font-mono text-[10px] text-muted-foreground/40">◆</span>
       <span className="h-px flex-1 bg-gradient-to-l from-transparent to-border/60" />
     </div>
   )

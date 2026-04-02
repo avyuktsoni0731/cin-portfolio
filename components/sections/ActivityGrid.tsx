@@ -8,7 +8,7 @@ import { SectionOrnament } from '@/components/visual/DecorIcons'
 
 /** GitHub-like greens — match ActivityHeatmap legend */
 const intensityColors = [
-  'bg-[#161b22] ring-1 ring-inset ring-zinc-700/60',
+  'bg-muted/80 ring-1 ring-inset ring-border/50',
   'bg-emerald-950/95 border border-emerald-800/70',
   'bg-emerald-600 shadow-[0_0_6px_rgba(5,150,105,0.35)]',
   'bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.45)]',
@@ -16,7 +16,7 @@ const intensityColors = [
 
 function Legend() {
   return (
-    <div className="mt-6 flex flex-wrap items-center justify-start gap-4 text-xs text-foreground/50">
+    <div className="mt-6 flex flex-wrap items-center justify-start gap-4 text-xs text-muted-foreground">
       <span>less</span>
       <div className="flex gap-1">
         {intensityColors.map((color, idx) => (
@@ -39,21 +39,21 @@ export default async function ActivityGrid() {
           activity
         </h3>
         {!data ? (
-          <p className="text-xs text-foreground/45 mb-8 max-w-lg leading-relaxed">
+          <p className="mb-8 max-w-lg text-xs leading-relaxed text-muted-foreground">
             Add{' '}
-            <code className="font-mono text-foreground/65">GITHUB_USERNAME</code> and{' '}
-            <code className="font-mono text-foreground/65">GITHUB_TOKEN</code> to{' '}
-            <code className="font-mono text-foreground/65">.env.local</code> (classic PAT
-            with <code className="font-mono text-foreground/65">read:user</code>). Totals
+            <code className="font-mono text-foreground/90">GITHUB_USERNAME</code> and{' '}
+            <code className="font-mono text-foreground/90">GITHUB_TOKEN</code> to{' '}
+            <code className="font-mono text-foreground/90">.env.local</code> (classic PAT
+            with <code className="font-mono text-foreground/90">read:user</code>). Totals
             use the{' '}
-            <strong className="text-foreground/75 font-normal">last ~365 days</strong>{' '}
+            <strong className="font-normal text-foreground/95">last ~365 days</strong>{' '}
             (like GitHub); the grid shows the latest weeks that fit this width. Set{' '}
-            <code className="font-mono text-foreground/65">GITHUB_ACTIVITY_YEAR=2026</code>{' '}
+            <code className="font-mono text-foreground/90">GITHUB_ACTIVITY_YEAR=2026</code>{' '}
             to lock the range to that calendar year.
           </p>
         ) : (
-          <p className="text-xs text-foreground/45 mb-8">
-            <span className="text-foreground/80">{data.totalContributions}</span>{' '}
+          <p className="mb-8 text-xs text-muted-foreground">
+            <span className="text-foreground/90">{data.totalContributions}</span>{' '}
             contributions
             {data.periodMode === 'rolling' ? (
               <> over the {data.periodLabel}</>
@@ -63,14 +63,14 @@ export default async function ActivityGrid() {
             . {' '}
             <Link
               href={`https://github.com/${data.login}`}
-              className="text-foreground/60 hover:text-foreground transition-colors"
+              className="text-muted-foreground transition-colors hover:text-foreground"
             >
               @{data.login}
             </Link>
           </p>
         )}
 
-        <div className="noise-panel fade-in-up relative w-full rounded-sm border border-border/20 bg-muted/5 p-5 sm:p-6">
+        <div className="noise-panel fade-in-up relative w-full rounded-md border border-border/25 bg-muted/10 p-5 sm:p-6">
           {data?.weeks?.length ? (
             <ActivityHeatmap weeks={data.weeks} />
           ) : (

@@ -16,7 +16,7 @@ export default function WorkSection() {
   return (
     <section
       id="work"
-      className="relative w-full overflow-hidden bg-background/88 py-24 px-6 backdrop-blur-[2px]"
+      className="relative w-full overflow-hidden bg-background/80 py-28 px-6 backdrop-blur-[3px]"
     >
       <div className="relative mx-auto max-w-3xl">
         <SectionOrnament className="mb-12" />
@@ -26,8 +26,8 @@ export default function WorkSection() {
             work
           </h2>
           <NoisePanel className="px-4 py-3 sm:max-w-[200px]">
-            <StackLayersMark className="h-10 w-full text-foreground" />
-            <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.15em] text-foreground/35">
+            <StackLayersMark className="h-10 w-full text-muted-foreground/50" />
+            <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground">
               stacks & experiments
             </p>
           </NoisePanel>
@@ -39,7 +39,7 @@ export default function WorkSection() {
           <div className="fade-in-up mt-14 border-t border-border/20 pt-10">
             <Link
               href="/work"
-              className="inline-flex items-center gap-2 font-mono text-sm text-foreground/55 transition-colors hover:text-foreground"
+              className="inline-flex items-center gap-2 font-mono text-sm text-muted-foreground transition-colors hover:text-foreground"
             >
               <span>
                 +{moreCount} more project{moreCount === 1 ? '' : 's'} on the full

@@ -6,10 +6,10 @@ export default function HeroIntro() {
       <h1 className="min-h-[1.15em]">
         <HeroTitle />
       </h1>
-      <p className="mt-5 font-mono text-xs tracking-wide text-foreground/70 sm:text-sm">
+      <p className="mt-5 font-mono text-xs tracking-wide text-muted-foreground sm:text-sm">
         builder · hacker · developer
       </p>
-      <p className="mt-3 font-mono text-[11px] text-foreground/50">
+      <p className="mt-3 font-mono text-[11px] text-muted-foreground/85">
         <a
           href="https://www.instagram.com/avyukt_builds/"
           target="_blank"
@@ -21,10 +21,7 @@ export default function HeroIntro() {
         — builds on camera
       </p>
       <p
-        className="mx-auto mt-5 max-w-md text-balance text-sm font-light leading-relaxed text-foreground/60 sm:text-[15px]"
-        style={{
-          textShadow: '0 1px 12px rgba(0,0,0,0.45)',
-        }}
+        className="mx-auto mt-5 max-w-md text-balance text-sm font-light leading-relaxed text-muted-foreground sm:text-[15px]"
       >
         i work where real-time data, developer tools, and infrastructure meet — making
         complex systems feel simple.
