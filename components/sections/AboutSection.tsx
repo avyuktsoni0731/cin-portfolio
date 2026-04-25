@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { NoisePanel } from '@/components/visual/NoisePanel'
 import { SectionOrnament, SproutMark } from '@/components/visual/DecorIcons'
+import Image from 'next/image'
 
 export default function AboutSection() {
   return (
@@ -20,14 +21,9 @@ export default function AboutSection() {
       <div className="relative mx-auto max-w-3xl">
         <SectionOrnament className="mb-10" />
 
-        <div className="flex flex-col gap-12 md:flex-row md:items-start md:gap-14">
-          <div className="mx-auto flex shrink-0 md:mx-0 md:w-36 md:flex-col md:items-center">
-            <NoisePanel className="p-5">
-              <SproutMark className="mx-auto h-24 w-24 md:h-28 md:w-28" />
-              <p className="mt-4 text-center font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
-                build → ship → learn
-              </p>
-            </NoisePanel>
+        <div className="flex flex-col gap-12 md:flex-row md:items-start md:gap-8">
+          <div className="mx-auto flex shrink-0 md:mx-0 md:w-[200px] md:h-[200px] md:flex-col md:items-center">
+            <Image src="/avyukt_builds_pfp.png" alt="Avyukt Soni" width={200} height={200} />
           </div>
 
           <div className="fade-in min-w-0 flex-1 space-y-6">

@@ -9,6 +9,7 @@ import {
 } from '@/lib/work-items'
 import { NoisePanel } from '@/components/visual/NoisePanel'
 import { SectionOrnament, StackLayersMark } from '@/components/visual/DecorIcons'
+import Image from 'next/image'
 
 export default function WorkSection() {
   const moreCount = ALL_WORK_ITEMS.length - HOME_WORK_COUNT
@@ -21,16 +22,25 @@ export default function WorkSection() {
       <div className="relative mx-auto max-w-3xl">
         <SectionOrnament className="mb-12" />
 
-        <div className="mb-14 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+        <div className="mb-14 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
           <h2 className="fade-in-up font-serif text-4xl font-semibold tracking-tight">
             work
           </h2>
-          <NoisePanel className="px-4 py-3 sm:max-w-[200px]">
+          {/* <NoisePanel className="px-4 py-3 sm:max-w-[200px]">
             <StackLayersMark className="h-10 w-full text-muted-foreground/50" />
             <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground/75">
               stacks & experiments
             </p>
-          </NoisePanel>
+          </NoisePanel> */}
+                      <Image
+                        src="/Av_Drooling.png"
+                        alt="Avyukt Soni"
+                        width={120}
+                        height={120}
+                        style={{ transform: 'scaleX(-1)' }}
+                      />
+                
+
         </div>
 
         <WorkItemsList items={HOME_WORK_ITEMS} />
