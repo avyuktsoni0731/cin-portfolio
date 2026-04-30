@@ -10,6 +10,8 @@ declare global {
       mute(): void
       unMute(): void
       isMuted(): boolean
+      playVideo(): void
+      getPlayerState(): number
       destroy(): void
     }
     interface PlayerOptions {
