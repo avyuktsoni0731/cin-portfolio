@@ -28,14 +28,14 @@ export default function NavHeader() {
               work
             </a>
           </li>
-          {/* <li>
-            <a 
-              href="#writing" 
-              className="hover:opacity-75 transition-opacity"
+          <li>
+            <a
+              href="/writing"
+              className="transition-colors hover:opacity-80"
             >
               writing
             </a>
-          </li> */}
+          </li>
         </ul>
       </nav>
     </header>

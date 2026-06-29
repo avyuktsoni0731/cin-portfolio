@@ -5,9 +5,8 @@ import type { Post } from '@/lib/posts'
 import { formatPostDate } from '@/lib/posts'
 
 export function PostList({ posts }: { posts: Post[] }) {
-  const [featured, ...rest] = posts.filter((p) => p.featured).length
-    ? [posts.find((p) => p.featured)!, ...posts.filter((p) => !p.featured)]
-    : posts
+  const featured = posts.find((p) => p.featured)
+  const rest = posts.filter((p) => p.slug !== featured?.slug)
 
   return (
     <div className="space-y-16">

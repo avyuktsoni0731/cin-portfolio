@@ -1,6 +1,8 @@
 'use client'
 
+import Link from 'next/link'
 import { JournalSpineMark, SectionOrnament } from '@/components/visual/DecorIcons'
+import { getFeaturedPost, formatPostDate } from '@/lib/posts'
 
 const THOUGHTS = [
   {
@@ -18,23 +20,15 @@ const THOUGHTS = [
     entry:
       'leading at gdgc felt less like “owning code” and more like unblocking thirteen people so their projects could ship — still learning that balance.',
   },
-  {
-    date: 'winter 2025',
-    entry:
-      'voltsense’s lesson: anomaly detection is easy to demo, hard to make trustworthy in a real home — cloud run and gemini were the smallest part.',
-  },
-  {
-    date: 'fall 2025',
-    entry:
-      'if the resume is honest, it should sound boring next to the repo. checking that again this quarter.',
-  },
 ]
+
+const featured = getFeaturedPost()
 
 export default function ThoughtsSection() {
   return (
     <section
       id="writing"
-      className="relative w-full overflow-hidden bg-background/80 py-28 px-6 backdrop-blur-[3px]"
+      className="relative w-full overflow-hidden bg-background/80 px-6 py-28 backdrop-blur-[3px]"
     >
       <div className="mx-auto max-w-3xl">
         <SectionOrnament className="mb-10" />
@@ -44,9 +38,34 @@ export default function ThoughtsSection() {
             <JournalSpineMark className="h-32 w-10 text-muted-foreground/50" />
           </div>
           <div className="min-w-0 flex-1">
-            <h3 className="mb-10 text-xl font-serif font-semibold tracking-tight fade-in-up">
-              current thoughts
-            </h3>
+            <div className="fade-in-up mb-10 flex flex-wrap items-end justify-between gap-4">
+              <h3 className="text-xl font-serif font-semibold tracking-tight">
+                current thoughts
+              </h3>
+              <Link
+                href="/writing"
+                className="font-mono text-xs text-muted-foreground underline decoration-border underline-offset-4 transition-colors hover:text-foreground"
+              >
+                all writing →
+              </Link>
+            </div>
+
+            {featured ? (
+              <Link
+                href={`/writing/${featured.slug}`}
+                className="group fade-in-up mb-10 block rounded-sm border border-border/25 bg-muted/[0.04] p-5 transition-colors hover:border-border/40 hover:bg-muted/10"
+              >
+                <p className="mb-2 font-mono text-xs text-muted-foreground">
+                  latest · {formatPostDate(featured.publishedAt)}
+                </p>
+                <p className="mb-2 font-serif text-lg font-semibold group-hover:underline">
+                  {featured.title}
+                </p>
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  {featured.subtitle}
+                </p>
+              </Link>
+            ) : null}
 
             <div className="space-y-6">
               {THOUGHTS.map((thought, idx) => (
@@ -63,12 +82,6 @@ export default function ThoughtsSection() {
                   </p>
                 </div>
               ))}
-            </div>
-
-            <div className="mt-12 text-center fade-in-up">
-              <p className="text-xs text-muted-foreground/80">
-                more thoughts coming soon...
-              </p>
             </div>
           </div>
         </div>
