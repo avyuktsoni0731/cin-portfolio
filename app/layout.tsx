@@ -4,6 +4,7 @@ import { Geist, Geist_Mono, Crimson_Text } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { getSiteUrl } from '@/lib/site'
 import { SiteAtmosphere } from '@/components/SiteAtmosphere'
+import { ScrollToTop } from '@/components/ScrollToTop'
 import './globals.css'
 
 const _geist = Geist({ subsets: ['latin'] })
@@ -91,6 +92,7 @@ export default function RootLayout({
       >
         <SiteAtmosphere />
         <div className="relative z-10">{children}</div>
+        <ScrollToTop />
         <Analytics />
       </body>
     </html>
