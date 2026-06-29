@@ -1,33 +1,6 @@
-export type PostBlock =
-  | { type: 'paragraph'; content: string }
-  | { type: 'heading'; level: 2 | 3; content: string }
-  | {
-      type: 'image'
-      src: string
-      alt: string
-      caption?: string
-      wide?: boolean
-    }
-  | { type: 'quote'; content: string; attribution?: string }
-  | { type: 'code'; content: string; language?: string; caption?: string }
-  | { type: 'list'; items: string[]; ordered?: boolean }
-  | { type: 'callout'; title?: string; content: string }
-  | { type: 'divider' }
-  | { type: 'video'; youtubeId: string; caption?: string }
+import { FORZA_BENCHMARK_POST } from '@/lib/posts/forza-benchmark'
 
-export type Post = {
-  slug: string
-  title: string
-  subtitle: string
-  description: string
-  publishedAt: string
-  updatedAt?: string
-  readingTimeMinutes: number
-  tags: string[]
-  featured?: boolean
-  coverImage?: { src: string; alt: string }
-  blocks: PostBlock[]
-}
+export type { Post, PostBlock } from '@/lib/posts/types'
 
 const GITHUB_AVATAR = 'https://github.com/avyuktsoni0731.png'
 
@@ -41,7 +14,7 @@ export const POSTS: Post[] = [
       'On shipping systems that still make sense at 2am — demos vs. durability, false positives, and why the boring middle is the real product.',
     publishedAt: '2026-03-12',
     readingTimeMinutes: 8,
-    featured: true,
+    featured: false,
     tags: ['building', 'systems', 'hardware', 'startups'],
     coverImage: {
       src: GITHUB_AVATAR,
@@ -154,6 +127,7 @@ function shouldAlert(reading: Signal, ctx: RoomContext): boolean {
       },
     ],
   },
+  FORZA_BENCHMARK_POST,
 ]
 
 export function getAllPosts(): Post[] {

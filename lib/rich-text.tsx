@@ -5,12 +5,13 @@ type Token =
   | { kind: 'text'; value: string }
   | { kind: 'bold'; value: string }
   | { kind: 'italic'; value: string }
+  | { kind: 'code'; value: string }
   | { kind: 'link'; label: string; href: string }
 
 function tokenize(text: string): Token[] {
   const tokens: Token[] = []
   const re =
-    /(\*\*[^*]+\*\*|\*[^*]+\*|\[[^\]]+\]\([^)]+\))/g
+    /(\*\*[^*]+\*\*|\*[^*]+\*|`[^`]+`|\[[^\]]+\]\([^)]+\))/g
   let last = 0
 
   for (const match of text.matchAll(re)) {
@@ -22,6 +23,8 @@ function tokenize(text: string): Token[] {
       tokens.push({ kind: 'bold', value: chunk.slice(2, -2) })
     } else if (chunk.startsWith('*')) {
       tokens.push({ kind: 'italic', value: chunk.slice(1, -1) })
+    } else if (chunk.startsWith('`')) {
+      tokens.push({ kind: 'code', value: chunk.slice(1, -1) })
     } else if (chunk.startsWith('[')) {
       const link = chunk.match(/\[([^\]]+)\]\(([^)]+)\)/)
       if (link) tokens.push({ kind: 'link', label: link[1], href: link[2] })
@@ -52,6 +55,15 @@ function renderToken(token: Token, key: number): ReactNode {
         <em key={key} className="text-foreground not-italic">
           {token.value}
         </em>
+      )
+    case 'code':
+      return (
+        <code
+          key={key}
+          className="rounded-sm bg-muted/30 px-1.5 py-0.5 font-mono text-[0.9em] text-foreground/90"
+        >
+          {token.value}
+        </code>
       )
     case 'link': {
       const className =

@@ -144,6 +144,60 @@ function Block({ block }: { block: PostBlock }) {
         </figure>
       )
 
+    case 'media':
+      return (
+        <figure className="my-10 rounded-sm border border-dashed border-border/40 bg-muted/[0.04] px-6 py-10 text-center">
+          <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+            media
+          </p>
+          <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-muted-foreground">
+            {block.description}
+          </p>
+        </figure>
+      )
+
+    case 'table':
+      return (
+        <figure className="my-10 overflow-x-auto">
+          <table className="w-full min-w-[20rem] border-collapse text-sm">
+            <thead>
+              <tr className="border-b border-border/35">
+                {block.headers.map((header, i) => (
+                  <th
+                    key={i}
+                    className="px-3 py-2.5 text-left font-mono text-[11px] uppercase tracking-wide text-muted-foreground"
+                  >
+                    {header}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {block.rows.map((row, ri) => (
+                <tr
+                  key={ri}
+                  className="border-b border-border/20 last:border-0"
+                >
+                  {row.map((cell, ci) => (
+                    <td
+                      key={ci}
+                      className="px-3 py-2.5 leading-snug text-foreground/80"
+                    >
+                      <RichText>{cell}</RichText>
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          {block.caption ? (
+            <figcaption className="mt-3 font-mono text-[11px] text-muted-foreground">
+              {block.caption}
+            </figcaption>
+          ) : null}
+        </figure>
+      )
+
     default:
       return null
   }
