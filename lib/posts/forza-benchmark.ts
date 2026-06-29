@@ -67,7 +67,7 @@ export const FORZA_BENCHMARK_POST: Post = {
   description:
     'A Rust Windows capture pipeline (WGC + NVENC + system audio) benchmarked against OBS in Forza Horizon 6. Early results show lower game overhead and stronger frame-time lows — plus honest caveats on file fps and who this embeddable module is actually for.',
   publishedAt: '2026-06-25',
-  readingTimeMinutes: 12,
+  readingTimeMinutes: 5,
   featured: true,
   tags: ['rust', 'windows', 'capture', 'benchmark', 'obs', 'nvenc'],
   blocks: [

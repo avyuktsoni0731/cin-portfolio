@@ -1,7 +1,14 @@
 'use client'
 
-import { useCallback, useEffect, useState } from 'react'
-import { Heart } from 'lucide-react'
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+  type ReactNode,
+} from 'react'
+import { Heart, MessageCircle } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import {
   getStoredAuthorName,
@@ -10,12 +17,204 @@ import {
 } from '@/lib/visitor-id'
 import type { CommentNode } from '@/lib/writing-engagement/types'
 
+const COMMENTS_SECTION_ID = 'post-comments'
+
+type EngagementContextValue = {
+  postSlug: string
+  likeCount: number
+  liked: boolean
+  likeLoading: boolean
+  commentCount: number
+  handleLike: () => void
+  scrollToComments: () => void
+  loadComments: () => Promise<void>
+}
+
+const EngagementContext = createContext<EngagementContextValue | null>(null)
+
+function useEngagement() {
+  const ctx = useContext(EngagementContext)
+  if (!ctx) {
+    throw new Error('PostEngagement components must be used within PostEngagementProvider')
+  }
+  return ctx
+}
+
+function countComments(nodes: CommentNode[]): number {
+  return nodes.reduce(
+    (sum, node) => sum + 1 + countComments(node.replies),
+    0,
+  )
+}
+
 function formatCommentDate(iso: string): string {
   return new Date(iso).toLocaleDateString('en-US', {
     month: 'short',
     day: 'numeric',
     year: 'numeric',
   })
+}
+
+export function PostEngagementProvider({
+  postSlug,
+  children,
+}: {
+  postSlug: string
+  children: ReactNode
+}) {
+  const [likeCount, setLikeCount] = useState(0)
+  const [liked, setLiked] = useState(false)
+  const [likeLoading, setLikeLoading] = useState(false)
+  const [commentCount, setCommentCount] = useState(0)
+
+  const loadLikes = useCallback(async () => {
+    const visitorId = getVisitorId()
+    const qs = visitorId ? `?visitorId=${encodeURIComponent(visitorId)}` : ''
+    const res = await fetch(`/api/writing/${postSlug}/likes${qs}`)
+    if (!res.ok) return
+    const data = await res.json()
+    setLikeCount(data.count ?? 0)
+    setLiked(Boolean(data.liked))
+  }, [postSlug])
+
+  const loadComments = useCallback(async () => {
+    try {
+      const res = await fetch(`/api/writing/${postSlug}/comments`)
+      const data = await res.json()
+      if (!res.ok) return
+      setCommentCount(countComments(data.comments ?? []))
+    } catch {
+      /* non-critical */
+    }
+  }, [postSlug])
+
+  useEffect(() => {
+    loadLikes()
+    loadComments()
+  }, [loadLikes, loadComments])
+
+  async function handleLike() {
+    setLikeLoading(true)
+    try {
+      const res = await fetch(`/api/writing/${postSlug}/likes`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ visitorId: getVisitorId() }),
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error ?? 'Failed to update like')
+      setLikeCount(data.count ?? 0)
+      setLiked(Boolean(data.liked))
+    } catch {
+      /* silent */
+    } finally {
+      setLikeLoading(false)
+    }
+  }
+
+  function scrollToComments() {
+    document.getElementById(COMMENTS_SECTION_ID)?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    })
+  }
+
+  return (
+    <EngagementContext.Provider
+      value={{
+        postSlug,
+        likeCount,
+        liked,
+        likeLoading,
+        commentCount,
+        handleLike,
+        scrollToComments,
+        loadComments,
+      }}
+    >
+      {children}
+    </EngagementContext.Provider>
+  )
+}
+
+function EngagementActionButton({
+  onClick,
+  disabled,
+  pressed,
+  label,
+  children,
+  className,
+}: {
+  onClick: () => void
+  disabled?: boolean
+  pressed?: boolean
+  label: string
+  children: ReactNode
+  className?: string
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      disabled={disabled}
+      aria-pressed={pressed}
+      aria-label={label}
+      className={cn(
+        'inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 font-mono text-xs transition-colors disabled:opacity-50',
+        className,
+      )}
+    >
+      {children}
+    </button>
+  )
+}
+
+/** Medium-style compact bar — place below the article heading */
+export function PostEngagementBar({ className }: { className?: string }) {
+  const {
+    likeCount,
+    liked,
+    likeLoading,
+    commentCount,
+    handleLike,
+    scrollToComments,
+  } = useEngagement()
+
+  return (
+    <div
+      className={cn(
+        'flex flex-wrap items-center gap-3 border-b border-border/20 pb-6',
+        className,
+      )}
+    >
+      <EngagementActionButton
+        onClick={handleLike}
+        disabled={likeLoading}
+        pressed={liked}
+        label={liked ? 'Unlike this post' : 'Like this post'}
+        className={
+          liked
+            ? 'border-emerald-500/35 bg-emerald-500/10 text-emerald-300'
+            : 'border-border/35 bg-background/40 text-muted-foreground hover:border-border hover:text-foreground'
+        }
+      >
+        <Heart
+          className={cn('h-4 w-4', liked && 'fill-current')}
+          strokeWidth={1.75}
+        />
+        <span>{likeCount}</span>
+      </EngagementActionButton>
+
+      <EngagementActionButton
+        onClick={scrollToComments}
+        label="Scroll to comments"
+        className="border-border/35 bg-background/40 text-muted-foreground hover:border-border hover:text-foreground"
+      >
+        <MessageCircle className="h-4 w-4" strokeWidth={1.75} />
+        <span>{commentCount}</span>
+      </EngagementActionButton>
+    </div>
+  )
 }
 
 function CommentForm({
@@ -189,23 +388,12 @@ function CommentThread({
   )
 }
 
-export function PostEngagement({ postSlug }: { postSlug: string }) {
-  const [likeCount, setLikeCount] = useState(0)
-  const [liked, setLiked] = useState(false)
-  const [likeLoading, setLikeLoading] = useState(false)
+/** Full comments section at the bottom of the article */
+export function PostEngagementComments() {
+  const { postSlug, loadComments: refreshCommentCount } = useEngagement()
   const [comments, setComments] = useState<CommentNode[]>([])
   const [commentsLoading, setCommentsLoading] = useState(true)
   const [commentsError, setCommentsError] = useState<string | null>(null)
-
-  const loadLikes = useCallback(async () => {
-    const visitorId = getVisitorId()
-    const qs = visitorId ? `?visitorId=${encodeURIComponent(visitorId)}` : ''
-    const res = await fetch(`/api/writing/${postSlug}/likes${qs}`)
-    if (!res.ok) return
-    const data = await res.json()
-    setLikeCount(data.count ?? 0)
-    setLiked(Boolean(data.liked))
-  }, [postSlug])
 
   const loadComments = useCallback(async () => {
     setCommentsLoading(true)
@@ -215,6 +403,7 @@ export function PostEngagement({ postSlug }: { postSlug: string }) {
       const data = await res.json()
       if (!res.ok) throw new Error(data.error ?? 'Failed to load comments')
       setComments(data.comments ?? [])
+      await refreshCommentCount()
     } catch (err) {
       setCommentsError(
         err instanceof Error ? err.message : 'Failed to load comments',
@@ -222,94 +411,60 @@ export function PostEngagement({ postSlug }: { postSlug: string }) {
     } finally {
       setCommentsLoading(false)
     }
-  }, [postSlug])
+  }, [postSlug, refreshCommentCount])
 
   useEffect(() => {
-    loadLikes()
     loadComments()
-  }, [loadLikes, loadComments])
-
-  async function handleLike() {
-    setLikeLoading(true)
-    try {
-      const res = await fetch(`/api/writing/${postSlug}/likes`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ visitorId: getVisitorId() }),
-      })
-      const data = await res.json()
-      if (!res.ok) throw new Error(data.error ?? 'Failed to update like')
-      setLikeCount(data.count ?? 0)
-      setLiked(Boolean(data.liked))
-    } catch {
-      /* silent — likes are non-critical */
-    } finally {
-      setLikeLoading(false)
-    }
-  }
+  }, [loadComments])
 
   return (
-    <section className="mx-auto max-w-[42rem] space-y-10 border-t border-border/20 pt-10">
-      <div className="flex items-center gap-4">
-        <button
-          type="button"
-          onClick={handleLike}
-          disabled={likeLoading}
-          aria-pressed={liked}
-          aria-label={liked ? 'Unlike this post' : 'Like this post'}
-          className={cn(
-            'inline-flex items-center gap-2 rounded-sm border px-4 py-2 font-mono text-xs transition-colors disabled:opacity-50',
-            liked
-              ? 'border-emerald-500/35 bg-emerald-500/10 text-emerald-300'
-              : 'border-border/35 bg-background/50 text-muted-foreground hover:border-border hover:text-foreground',
-          )}
-        >
-          <Heart
-            className={cn('h-3.5 w-3.5', liked && 'fill-current')}
-            strokeWidth={1.75}
-          />
-          <span>{likeCount}</span>
-        </button>
+    <section
+      id={COMMENTS_SECTION_ID}
+      className="mx-auto max-w-[42rem] scroll-mt-28 space-y-6 border-t border-border/20 pt-10"
+    >
+      <div>
+        <h2 className="mb-1 font-serif text-xl font-semibold tracking-tight text-foreground">
+          comments
+        </h2>
         <p className="font-mono text-[11px] text-muted-foreground">
-          anonymous · one per browser
+          name required · threaded replies
         </p>
       </div>
 
-      <div className="space-y-6">
-        <div>
-          <h2 className="mb-1 font-serif text-xl font-semibold tracking-tight text-foreground">
-            comments
-          </h2>
-          <p className="font-mono text-[11px] text-muted-foreground">
-            name required · threaded replies
-          </p>
+      <CommentForm postSlug={postSlug} onSuccess={loadComments} />
+
+      {commentsLoading ? (
+        <p className="font-mono text-xs text-muted-foreground">
+          loading comments…
+        </p>
+      ) : commentsError ? (
+        <p className="font-mono text-xs text-red-400/90">{commentsError}</p>
+      ) : comments.length === 0 ? (
+        <p className="text-sm text-muted-foreground">
+          no comments yet — start the thread.
+        </p>
+      ) : (
+        <div className="divide-y divide-border/20">
+          {comments.map((comment) => (
+            <CommentThread
+              key={comment.id}
+              postSlug={postSlug}
+              comment={comment}
+              onRefresh={loadComments}
+            />
+          ))}
         </div>
-
-        <CommentForm postSlug={postSlug} onSuccess={loadComments} />
-
-        {commentsLoading ? (
-          <p className="font-mono text-xs text-muted-foreground">
-            loading comments…
-          </p>
-        ) : commentsError ? (
-          <p className="font-mono text-xs text-red-400/90">{commentsError}</p>
-        ) : comments.length === 0 ? (
-          <p className="text-sm text-muted-foreground">
-            no comments yet — start the thread.
-          </p>
-        ) : (
-          <div className="divide-y divide-border/20">
-            {comments.map((comment) => (
-              <CommentThread
-                key={comment.id}
-                postSlug={postSlug}
-                comment={comment}
-                onRefresh={loadComments}
-              />
-            ))}
-          </div>
-        )}
-      </div>
+      )}
     </section>
+  )
+}
+
+/** @deprecated use PostEngagementProvider + Bar + Comments */
+export function PostEngagement({ postSlug }: { postSlug: string }) {
+  return (
+    <PostEngagementProvider postSlug={postSlug}>
+      <PostEngagementBar className="mb-6" />
+      <PostEngagementComments />
+    </PostEngagementProvider>
   )
 }
