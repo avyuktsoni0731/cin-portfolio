@@ -4,6 +4,7 @@ import type { Post } from '@/lib/posts'
 import { formatPostDate } from '@/lib/posts'
 import { SectionOrnament } from '@/components/visual/DecorIcons'
 import { PostBody } from '@/components/writing/PostBody'
+import { PostEngagement } from '@/components/writing/PostEngagement'
 import { ShareBar } from '@/components/writing/ShareBar'
 
 export function ArticleView({ post, url }: { post: Post; url: string }) {
@@ -86,6 +87,8 @@ export function ArticleView({ post, url }: { post: Post; url: string }) {
         <div className="py-10">
           <PostBody blocks={post.blocks} />
         </div>
+
+        <PostEngagement postSlug={post.slug} />
 
         <footer className="mt-8 space-y-8 border-t border-border/20 pt-10">
           {post.tags.length > 0 ? (

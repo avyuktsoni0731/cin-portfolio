@@ -1,8 +1,10 @@
 import { z } from 'zod'
 
-export const visitorIdSchema = z
+const objectIdSchema = z
   .string()
-  .uuid('Invalid visitor id')
+  .regex(/^[a-f\d]{24}$/i, 'Invalid comment reference')
+
+export const visitorIdSchema = z.string().uuid('Invalid visitor id')
 
 export const createCommentSchema = z.object({
   authorName: z
@@ -15,7 +17,7 @@ export const createCommentSchema = z.object({
     .trim()
     .min(1, 'Comment cannot be empty')
     .max(2000, 'Comment is too long'),
-  parentId: z.string().uuid().optional().nullable(),
+  parentId: objectIdSchema.optional().nullable(),
 })
 
 export const toggleLikeSchema = z.object({
