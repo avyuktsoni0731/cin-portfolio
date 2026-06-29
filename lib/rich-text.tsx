@@ -1,85 +1,83 @@
 import Link from 'next/link'
 import type { ReactNode } from 'react'
 
-const LINK_RE = /\[([^\]]+)\]\(([^)]+)\)/g
-const BOLD_RE = /\*\*([^*]+)\*\*/g
-const ITALIC_RE = /\*([^*]+)\*/g
+type Token =
+  | { kind: 'text'; value: string }
+  | { kind: 'bold'; value: string }
+  | { kind: 'italic'; value: string }
+  | { kind: 'link'; label: string; href: string }
 
-function applyPattern(
-  text: string,
-  pattern: RegExp,
-  render: (match: string, key: string) => ReactNode,
-): ReactNode[] {
-  const parts: ReactNode[] = []
+function tokenize(text: string): Token[] {
+  const tokens: Token[] = []
+  const re =
+    /(\*\*[^*]+\*\*|\*[^*]+\*|\[[^\]]+\]\([^)]+\))/g
   let last = 0
-  let key = 0
-  const re = new RegExp(pattern.source, pattern.flags)
 
   for (const match of text.matchAll(re)) {
     const index = match.index ?? 0
-    if (index > last) parts.push(text.slice(last, index))
-    parts.push(render(match[0], `m-${key++}`))
-    last = index + match[0].length
+    if (index > last) tokens.push({ kind: 'text', value: text.slice(last, index) })
+
+    const chunk = match[0]
+    if (chunk.startsWith('**')) {
+      tokens.push({ kind: 'bold', value: chunk.slice(2, -2) })
+    } else if (chunk.startsWith('*')) {
+      tokens.push({ kind: 'italic', value: chunk.slice(1, -1) })
+    } else if (chunk.startsWith('[')) {
+      const link = chunk.match(/\[([^\]]+)\]\(([^)]+)\)/)
+      if (link) tokens.push({ kind: 'link', label: link[1], href: link[2] })
+      else tokens.push({ kind: 'text', value: chunk })
+    } else {
+      tokens.push({ kind: 'text', value: chunk })
+    }
+
+    last = index + chunk.length
   }
 
-  if (last < text.length) parts.push(text.slice(last))
-  return parts.length ? parts : [text]
+  if (last < text.length) tokens.push({ kind: 'text', value: text.slice(last) })
+  return tokens.length ? tokens : [{ kind: 'text', value: text }]
 }
 
-function inlineNodes(text: string): ReactNode[] {
-  let nodes: ReactNode[] = [text]
-
-  nodes = nodes.flatMap((node) =>
-    typeof node === 'string'
-      ? applyPattern(node, BOLD_RE, (_, key) => (
-          <strong key={key} className="font-medium text-foreground">
-            {node.match(BOLD_RE)?.[1]}
-          </strong>
-        ))
-      : node,
-  )
-
-  nodes = nodes.flatMap((node) =>
-    typeof node === 'string'
-      ? applyPattern(node, ITALIC_RE, (full, key) => (
-          <em key={key} className="text-foreground not-italic">
-            {full.slice(1, -1)}
-          </em>
-        ))
-      : node,
-  )
-
-  nodes = nodes.flatMap((node) =>
-    typeof node === 'string'
-      ? applyPattern(node, LINK_RE, (full, key) => {
-          const m = full.match(LINK_RE)
-          if (!m) return full
-          const [, label, href] = m
-          const external = href.startsWith('http')
-          const className =
-            'underline decoration-border underline-offset-4 transition-colors hover:text-foreground'
-          return external ? (
-            <a
-              key={key}
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={className}
-            >
-              {label}
-            </a>
-          ) : (
-            <Link key={key} href={href} className={className}>
-              {label}
-            </Link>
-          )
-        })
-      : node,
-  )
-
-  return nodes
+function renderToken(token: Token, key: number): ReactNode {
+  switch (token.kind) {
+    case 'text':
+      return token.value
+    case 'bold':
+      return (
+        <strong key={key} className="font-medium text-foreground">
+          {token.value}
+        </strong>
+      )
+    case 'italic':
+      return (
+        <em key={key} className="text-foreground not-italic">
+          {token.value}
+        </em>
+      )
+    case 'link': {
+      const className =
+        'underline decoration-border underline-offset-4 transition-colors hover:text-foreground'
+      if (token.href.startsWith('http')) {
+        return (
+          <a
+            key={key}
+            href={token.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={className}
+          >
+            {token.label}
+          </a>
+        )
+      }
+      return (
+        <Link key={key} href={token.href} className={className}>
+          {token.label}
+        </Link>
+      )
+    }
+  }
 }
 
 export function RichText({ children }: { children: string }) {
-  return <>{inlineNodes(children)}</>
+  return <>{tokenize(children).map((t, i) => renderToken(t, i))}</>
 }
