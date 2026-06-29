@@ -2,6 +2,7 @@ import Image from 'next/image'
 import type { PostBlock } from '@/lib/posts'
 import { RichText } from '@/lib/rich-text'
 import { cn } from '@/lib/utils'
+import { MermaidDiagram } from '@/components/writing/MermaidDiagram'
 
 export function PostBody({ blocks }: { blocks: PostBlock[] }) {
   return (
@@ -154,6 +155,11 @@ function Block({ block }: { block: PostBlock }) {
             {block.description}
           </p>
         </figure>
+      )
+
+    case 'mermaid':
+      return (
+        <MermaidDiagram chart={block.chart} caption={block.caption} />
       )
 
     case 'table':

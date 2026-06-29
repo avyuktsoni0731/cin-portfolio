@@ -7,6 +7,41 @@ type MermaidDiagramProps = {
   caption?: string
 }
 
+type MermaidApi = {
+  initialize: (config: object) => void
+  render: (id: string, text: string) => Promise<{ svg: string }>
+}
+
+declare global {
+  interface Window {
+    mermaid?: MermaidApi
+  }
+}
+
+let mermaidLoader: Promise<MermaidApi> | null = null
+
+function loadMermaid(): Promise<MermaidApi> {
+  if (typeof window === 'undefined') {
+    return Promise.reject(new Error('Mermaid requires a browser'))
+  }
+  if (window.mermaid) return Promise.resolve(window.mermaid)
+  if (mermaidLoader) return mermaidLoader
+
+  mermaidLoader = new Promise((resolve, reject) => {
+    const script = document.createElement('script')
+    script.src = 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js'
+    script.async = true
+    script.onload = () => {
+      if (window.mermaid) resolve(window.mermaid)
+      else reject(new Error('Mermaid failed to load'))
+    }
+    script.onerror = () => reject(new Error('Mermaid script failed to load'))
+    document.head.appendChild(script)
+  })
+
+  return mermaidLoader
+}
+
 export function MermaidDiagram({ chart, caption }: MermaidDiagramProps) {
   const reactId = useId().replace(/:/g, '')
   const [svg, setSvg] = useState('')
@@ -17,7 +52,7 @@ export function MermaidDiagram({ chart, caption }: MermaidDiagramProps) {
 
     async function render() {
       try {
-        const { default: mermaid } = await import('mermaid')
+        const mermaid = await loadMermaid()
         mermaid.initialize({
           startOnLoad: false,
           theme: 'base',

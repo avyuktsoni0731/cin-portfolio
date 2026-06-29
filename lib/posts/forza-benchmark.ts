@@ -1,5 +1,64 @@
 import type { Post } from '@/lib/posts/types'
 
+const ARCHITECTURE_DIAGRAM = `flowchart TB
+    subgraph Host["Host application (your app / CLI)"]
+        COM["COM init (MTA)"]
+        STOP["Stop flag / Ctrl+C"]
+        CFG["SessionConfig / PipelineParams"]
+    end
+
+    subgraph Runtime["capture-runtime"]
+        LOOP["run_recording() session loop"]
+        METRICS["metrics.csv (optional)"]
+    end
+
+    subgraph Video["Video path"]
+        WGC["Windows Graphics Capture (WGC)"]
+        D3D["D3D11 textures"]
+        PIPE["pipeline crate<br/>BGRA → NV12 / I420"]
+        VENC["encoder crate<br/>NVENC → OpenH264 fallback"]
+    end
+
+    subgraph Audio["Audio path"]
+        WASAPI["WASAPI loopback"]
+        MIX["audio crate<br/>downmix + presence"]
+        AENC["audio_encoder<br/>AAC-LC or Opus"]
+    end
+
+    subgraph Output["OutputTarget"]
+        FILES["Files<br/>clip.h264 · clip.mp4 · audio.wav"]
+        STREAM["Stream channels<br/>VideoPacket · AudioChunk"]
+        BOTH["Files + Stream"]
+    end
+
+    subgraph Transport["Host transport (not in this repo)"]
+        WEBRTC["WebRTC / LiveKit"]
+        RTMP["RTMP / WHIP"]
+        UPLOAD["S3 / upload / custom"]
+    end
+
+    COM --> LOOP
+    CFG --> LOOP
+    STOP --> LOOP
+
+    LOOP --> WGC --> D3D --> PIPE --> VENC
+    LOOP --> WASAPI --> MIX --> AENC
+
+    VENC --> FILES
+    AENC --> FILES
+    VENC --> STREAM
+    AENC --> STREAM
+    VENC --> BOTH
+    AENC --> BOTH
+
+    LOOP --> METRICS
+
+    STREAM --> WEBRTC
+    STREAM --> RTMP
+    STREAM --> UPLOAD
+    BOTH --> WEBRTC
+    BOTH --> RTMP`
+
 export const FORZA_BENCHMARK_POST: Post = {
   slug: 'rust-capture-pipeline-forza-benchmark-vs-obs',
   title: 'building a rust capture pipeline — benchmarking it against obs in forza',
@@ -101,9 +160,10 @@ export const FORZA_BENCHMARK_POST: Post = {
         'the public api lives in a crate called **`capture-runtime`**. the repo also ships a small cli (`capture-pipeline`) that\'s basically a reference host — proof that the library works, not the product itself.',
     },
     {
-      type: 'media',
-      description:
-        'Architecture diagram — capture → pipeline → encoder → output / stream channels.',
+      type: 'mermaid',
+      chart: ARCHITECTURE_DIAGRAM,
+      caption:
+        'capture-runtime — capture → pipeline → encoder → output / stream channels. transport lives in the host.',
     },
     {
       type: 'callout',
