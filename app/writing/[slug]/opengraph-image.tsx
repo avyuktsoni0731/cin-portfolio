@@ -32,7 +32,7 @@ export default async function OpenGraphImage({
     .jpeg({ quality: 82, mozjpeg: true })
     .toBuffer()
 
-  return new Response(jpeg, {
+  return new Response(new Uint8Array(jpeg), {
     headers: {
       'Content-Type': 'image/jpeg',
       'Cache-Control': 'public, max-age=31536000, immutable',
