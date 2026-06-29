@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation'
 import NavHeader from '@/components/NavHeader'
 import Footer from '@/components/sections/Footer'
 import { ArticleView } from '@/components/writing/ArticleView'
-import { getAllPosts, getPostBySlug } from '@/lib/posts'
+import { getAllPosts, getPostBySlug, getPostOgImage } from '@/lib/posts'
 import { getSiteUrl } from '@/lib/site'
 
 type PageProps = {
@@ -20,6 +20,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!post) return {}
 
   const url = new URL(`/writing/${slug}`, getSiteUrl())
+  const ogImage = getPostOgImage(post)
+  const ogImageUrl = ogImage
+    ? new URL(ogImage.src, getSiteUrl()).toString()
+    : undefined
 
   return {
     title: post.title,
@@ -34,12 +38,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       modifiedTime: post.updatedAt ?? post.publishedAt,
       authors: ['Avyukt Soni'],
       tags: post.tags,
-      ...(post.coverImage
+      ...(ogImageUrl
         ? {
             images: [
               {
-                url: post.coverImage.src,
-                alt: post.coverImage.alt,
+                url: ogImageUrl,
+                alt: ogImage!.alt,
               },
             ],
           }
@@ -49,6 +53,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       card: 'summary_large_image',
       title: post.title,
       description: post.description,
+      ...(ogImageUrl ? { images: [ogImageUrl] } : {}),
     },
   }
 }
