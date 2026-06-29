@@ -10,6 +10,20 @@ const PLAYING = 1
 const BUFFERING = 3
 const CUED = 5
 
+function disableCaptions(player: YT.Player) {
+  try {
+    const p = player as YT.Player & {
+      setOption?: (module: string, option: string, value: unknown) => void
+      unloadModule?: (module: string) => void
+    }
+    p.setOption?.('captions', 'track', {})
+    p.setOption?.('captions', 'reload', true)
+    p.unloadModule?.('captions')
+  } catch {
+    /* noop */
+  }
+}
+
 /**
  * Background loop via YouTube IFrame API (mute/unmute from SoundToggle).
  * Requires NEXT_PUBLIC_HERO_YOUTUBE_VIDEO_ID.
@@ -34,6 +48,7 @@ export default function HeroVideoBackground({ videoId }: { videoId: string }) {
     const safePlay = (p: YT.Player) => {
       try {
         p.mute()
+        disableCaptions(p)
         p.playVideo()
       } catch {
         /* noop */
@@ -57,6 +72,7 @@ export default function HeroVideoBackground({ videoId }: { videoId: string }) {
         videoId,
         width: '100%',
         height: '100%',
+        host: 'https://www.youtube-nocookie.com',
         playerVars: {
           autoplay: 1,
           mute: 1,
@@ -71,6 +87,7 @@ export default function HeroVideoBackground({ videoId }: { videoId: string }) {
           fs: 0,
           iv_load_policy: 3,
           cc_load_policy: 0,
+          cc_lang_pref: 'en',
           enablejsapi: 1,
           origin: window.location.origin,
         },
@@ -80,15 +97,22 @@ export default function HeroVideoBackground({ videoId }: { videoId: string }) {
             const p = e.target
             playerRef.current = p
             registerPlayer(p)
+            disableCaptions(p)
             safePlay(p)
             ;[120, 400, 1000, 2200].forEach((ms) =>
-              pushTimeout(() => nudgeIfStuck(p), ms),
+              pushTimeout(() => {
+                disableCaptions(p)
+                nudgeIfStuck(p)
+              }, ms),
             )
           },
           onStateChange: (e) => {
             if (cancelled) return
             const p = e.target
             const state = e.data
+            if (state === PLAYING || state === BUFFERING) {
+              disableCaptions(p)
+            }
             if (state === ENDED) {
               safePlay(p)
               return
@@ -132,16 +156,21 @@ export default function HeroVideoBackground({ videoId }: { videoId: string }) {
     <div
       className="absolute inset-0 z-0 overflow-hidden pointer-events-none"
       aria-hidden
+      style={{
+        // Crop top title card + bottom caption band inside the iframe.
+        clipPath: 'inset(6% 0 11% 0)',
+      }}
     >
       <div
         id={containerId}
-        className="absolute left-1/2 top-1/2 border-0 -translate-x-1/2 -translate-y-1/2"
+        className="absolute left-1/2 top-1/2 border-0"
         style={{
-          // Overscan-crop hides occasional top/bottom YouTube chrome without bars.
-          width: 'calc(100vw + 220px)',
-          height: 'calc(56.25vw + 120px)',
-          minHeight: 'calc(100vh + 120px)',
-          minWidth: 'calc(177.77vh + 220px)',
+          width: 'calc(100vw + 280px)',
+          height: 'calc(56.25vw + 160px)',
+          minHeight: 'calc(100vh + 160px)',
+          minWidth: 'calc(177.77vh + 280px)',
+          transform: 'translate(-50%, -51%) scale(1.14)',
+          transformOrigin: 'center center',
         }}
       />
     </div>
