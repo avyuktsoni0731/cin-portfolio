@@ -1,4 +1,4 @@
-import type { Post } from '@/lib/posts'
+import type { Post } from '@/lib/posts/types'
 
 export const FORZA_BENCHMARK_POST: Post = {
   slug: 'rust-capture-pipeline-forza-benchmark-vs-obs',
@@ -13,9 +13,11 @@ export const FORZA_BENCHMARK_POST: Post = {
   tags: ['rust', 'windows', 'capture', 'benchmark', 'obs', 'nvenc'],
   blocks: [
     {
-      type: 'media',
-      description:
-        'Hero image — side-by-side Forza in-game benchmark summary. Left: Rust capture pipeline run. Right: OBS run. Caption: Same machine, same route, separate recording sessions.',
+      type: 'image',
+      src: '/blogs/forza-benchmark/hero-image.png',
+      alt: 'Forza benchmark — Rust pipeline vs OBS',
+      caption: 'Same machine, same route, separate recording sessions.',
+      wide: true,
     },
     { type: 'divider' },
     {
@@ -163,9 +165,12 @@ export const FORZA_BENCHMARK_POST: Post = {
         'forza\'s performance summary compares cpu simulation, cpu render, and gpu frame rates — including **1% lows** and **0.1% lows**, which tell you how bad the worst moments get.',
     },
     {
-      type: 'media',
-      description:
+      type: 'image',
+      src: '/blogs/forza-benchmark/full-benchmark.png',
+      alt: 'Benchmark comparison table',
+      caption:
         'Full benchmark comparison table — FPS, Low 1%, Low 0.1% for CPU Simulation, CPU Render, GPU. Rust vs OBS.',
+
     },
     {
       type: 'heading',
@@ -211,9 +216,10 @@ export const FORZA_BENCHMARK_POST: Post = {
       content: 'achieved fps & overlay (real run)',
     },
     {
-      type: 'media',
-      description:
-        'Screenshot — side-by-side Performance Summary windows with overlay FPS and GPU %.',
+      type: 'image',
+      src: '/blogs/forza-benchmark/real-time-performance.png',
+      alt: 'Performance Summary',
+      caption: 'Performance Summary — side-by-side Performance Summary windows with overlay FPS and GPU %.',
     },
     {
       type: 'paragraph',
@@ -240,11 +246,12 @@ export const FORZA_BENCHMARK_POST: Post = {
       level: 2,
       content: 'results: system resources',
     },
-    {
-      type: 'media',
-      description:
-        'Resources table — GPU ~97% both, CPU ~53% vs ~52%, Memory ~6150 MB vs ~6290 MB.',
-    },
+    // {
+    //   type: 'image',
+    //   src: '/blogs/forza-benchmark/resources-utilized.png',
+    //   alt: 'System Resources',
+    //   caption: 'System Resources — GPU ~97% both, CPU ~53% vs ~52%, Memory ~6150 MB vs ~6290 MB.',
+    // },
     {
       type: 'table',
       headers: ['resource', 'rust pipeline', 'obs'],
@@ -265,11 +272,11 @@ export const FORZA_BENCHMARK_POST: Post = {
       level: 2,
       content: 'results: the recording files (quality vs frame rate)',
     },
-    {
-      type: 'media',
-      description:
-        'Video/audio metadata table — resolution, bitrate, fps, audio bitrate, channels, sample rate.',
-    },
+    // {
+    //   type: 'media',
+    //   description:
+    //     'Video/audio metadata table — resolution, bitrate, fps, audio bitrate, channels, sample rate.',
+    // },
     {
       type: 'table',
       headers: ['', 'rust pipeline', 'obs'],
@@ -297,9 +304,9 @@ export const FORZA_BENCHMARK_POST: Post = {
         'i\'ll be tightening cfr-style output and frame pacing — the benchmark already showed the hard part (runtime overhead) is moving in the right direction.',
     },
     {
-      type: 'media',
-      description:
-        'Optional — 10–15 second embedded video or GIF: side-by-side playback of OBS vs pipeline footage. Mute or low music; label each side.',
+      type: 'video',
+      youtubeId: 'JqCID-oWQjc',
+      caption: 'Side-by-side playback: OBS (left) vs. Rust pipeline (right), same Forza route. Mute for this version — watch differences in frame smoothness and detail.',
     },
     { type: 'divider' },
     {
@@ -355,9 +362,10 @@ export const FORZA_BENCHMARK_POST: Post = {
       ],
     },
     {
-      type: 'media',
-      description:
-        'Optional — screenshot of CLI output, metrics.csv in Excel, or stream_stats terminal demo.',
+      type: 'image',
+      src: '/blogs/forza-benchmark/cli.png',
+      alt: 'CLI Output',
+      caption: 'CLI Output',
     },
     { type: 'divider' },
     {

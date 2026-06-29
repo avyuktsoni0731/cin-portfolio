@@ -15,6 +15,7 @@ export type PostBlock =
   | { type: 'divider' }
   | { type: 'video'; youtubeId: string; caption?: string }
   | { type: 'media'; description: string }
+  | { type: 'mermaid'; chart: string; caption?: string }
   | {
       type: 'table'
       headers: string[]

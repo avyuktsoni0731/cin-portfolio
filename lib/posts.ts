@@ -1,6 +1,7 @@
 import { FORZA_BENCHMARK_POST } from '@/lib/posts/forza-benchmark'
+import type { Post, PostBlock } from '@/lib/posts/types'
 
-export type { Post, PostBlock } from '@/lib/posts/types'
+export type { Post, PostBlock }
 
 const GITHUB_AVATAR = 'https://github.com/avyuktsoni0731.png'
 
