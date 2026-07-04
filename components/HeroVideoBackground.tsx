@@ -72,7 +72,6 @@ export default function HeroVideoBackground({ videoId }: { videoId: string }) {
         videoId,
         width: '100%',
         height: '100%',
-        host: 'https://www.youtube-nocookie.com',
         playerVars: {
           autoplay: 1,
           mute: 1,
@@ -87,7 +86,6 @@ export default function HeroVideoBackground({ videoId }: { videoId: string }) {
           fs: 0,
           iv_load_policy: 3,
           cc_load_policy: 0,
-          cc_lang_pref: 'en',
           enablejsapi: 1,
           origin: window.location.origin,
         },
@@ -156,21 +154,16 @@ export default function HeroVideoBackground({ videoId }: { videoId: string }) {
     <div
       className="absolute inset-0 z-0 overflow-hidden pointer-events-none"
       aria-hidden
-      style={{
-        // Crop top title card + bottom caption band inside the iframe.
-        clipPath: 'inset(6% 0 11% 0)',
-      }}
     >
       <div
         id={containerId}
-        className="absolute left-1/2 top-1/2 border-0"
+        className="absolute left-1/2 top-1/2 border-0 -translate-x-1/2 -translate-y-1/2"
         style={{
-          width: 'calc(100vw + 280px)',
-          height: 'calc(56.25vw + 160px)',
-          minHeight: 'calc(100vh + 160px)',
-          minWidth: 'calc(177.77vh + 280px)',
-          transform: 'translate(-50%, -51%) scale(1.14)',
-          transformOrigin: 'center center',
+          // Overscan-crop hides occasional top/bottom YouTube chrome without bars.
+          width: 'calc(100vw + 220px)',
+          height: 'calc(56.25vw + 120px)',
+          minHeight: 'calc(100vh + 120px)',
+          minWidth: 'calc(177.77vh + 220px)',
         }}
       />
     </div>
