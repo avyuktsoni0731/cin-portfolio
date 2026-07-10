@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <AmbientVideoProvider>
       <main className="min-h-screen">
-        <NavHeader />
+        <NavHeader transparent />
         <HeroSection />
         <SoundToggle />
         <AboutSection />

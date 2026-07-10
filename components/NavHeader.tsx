@@ -3,15 +3,20 @@
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
 
-export default function NavHeader() {
+type NavHeaderProps = {
+  /** Force transparent nav (home hero). Prefer this over pathname when known. */
+  transparent?: boolean
+}
+
+export default function NavHeader({ transparent }: NavHeaderProps = {}) {
   const pathname = usePathname()
-  const isHome = pathname === '/'
+  const isTransparent = transparent ?? pathname === '/'
 
   return (
     <header
       className={cn(
         'fixed top-0 left-0 right-0 z-50',
-        isHome
+        isTransparent
           ? 'bg-transparent'
           : 'border-b border-border/25 bg-background/75 backdrop-blur-md',
       )}
@@ -27,7 +32,7 @@ export default function NavHeader() {
         <ul
           className={cn(
             'flex gap-8 text-sm',
-            isHome ? 'text-foreground' : 'text-muted-foreground',
+            isTransparent ? 'text-foreground' : 'text-muted-foreground',
           )}
         >
           <li>
@@ -35,7 +40,7 @@ export default function NavHeader() {
               href="/about"
               className={cn(
                 'transition-colors',
-                isHome ? 'hover:opacity-80' : 'hover:text-foreground',
+                isTransparent ? 'hover:opacity-80' : 'hover:text-foreground',
               )}
             >
               about
@@ -46,7 +51,7 @@ export default function NavHeader() {
               href="/work"
               className={cn(
                 'transition-colors',
-                isHome ? 'hover:opacity-80' : 'hover:text-foreground',
+                isTransparent ? 'hover:opacity-80' : 'hover:text-foreground',
               )}
             >
               work
@@ -57,7 +62,7 @@ export default function NavHeader() {
               href="/writing"
               className={cn(
                 'transition-colors',
-                isHome ? 'hover:opacity-80' : 'hover:text-foreground',
+                isTransparent ? 'hover:opacity-80' : 'hover:text-foreground',
               )}
             >
               writing
